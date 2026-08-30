@@ -114,6 +114,7 @@
               opacity=".55" vector-effect="non-scaling-stroke"/>
       </svg>
 
+      <img class="hero__garland" src="assets/lantern-string.svg" alt="">
       <img class="hero__lantern hero__lantern--l" src="assets/lantern.svg" alt="">
       <img class="hero__lantern hero__lantern--r" src="assets/lantern.svg" alt="">
       <img class="hero__corner hero__corner--l" src="assets/corner-spray.svg" alt="">
@@ -124,7 +125,10 @@
       <p class="hero__welcome hl" data-fill="welcome"></p>
       <h1 class="hero__ceremony gold-text hl" data-fill="ceremony"></h1>
       <p class="hero__joiner hl" data-fill="joiner"></p>
-      <img class="hero__crest hl" src="assets/crest.svg" alt="">
+      <span class="hero__wreath hl">
+        <img src="assets/monogram-wreath.svg" alt="">
+        <span class="hero__wreath-mono gold-text" data-fill="monogram"></span>
+      </span>
       <p class="hero__couple gold-text hl" data-fill="couple"></p>
     </div>
 
@@ -165,6 +169,7 @@
       </div>
 
       <p class="date__done" id="dateDone">
+        <img class="date__laurel" src="assets/laurel-badge.svg" alt="">
         <span class="date__weekday gold-text"></span>
         <span class="date__note" data-fill="date.revealedNote"></span>
       </p>
@@ -176,7 +181,7 @@
 
 
   <!-- ── the families ── -->
-  <section class="sec sec--names">
+  <section class="sec sec--names" id="namesSec">
     <div class="sec__inner">
       <div class="person reveal" data-stagger>
         <h3 class="person__name gold-text" data-fill="groom.name"></h3>
@@ -205,7 +210,7 @@
 
 
   <!-- ── timeline ── -->
-  <section class="sec sec--timeline">
+  <section class="sec sec--timeline" id="timelineSec">
     <div class="sec__inner">
       <h2 class="script-h gold-text reveal" data-fill="timelineTitle"></h2>
       <ol class="tl" id="tl"><span class="tl__rail" id="tlRail"></span></ol>
@@ -214,7 +219,7 @@
 
 
   <!-- ── venue ── -->
-  <section class="sec sec--venue">
+  <section class="sec sec--venue" id="venueSec">
     <div class="sec__inner">
       <h2 class="script-h gold-text reveal" data-fill="venue.title"></h2>
       <div class="venue reveal" data-stagger>
@@ -230,7 +235,7 @@
 
 
   <!-- ── haldi ── -->
-  <section class="sec sec--haldi">
+  <section class="sec sec--haldi" id="haldiSec">
     <img class="closing__corner closing__corner--l" src="assets/corner-spray.svg" alt="">
     <img class="closing__corner closing__corner--r" src="assets/corner-spray-flip.svg" alt="">
     <div class="sec__inner">
@@ -252,7 +257,7 @@
 
 
   <!-- ── rsvp ── -->
-  <section class="sec sec--rsvp">
+  <section class="sec sec--rsvp" id="rsvpSec">
     <div class="sec__inner" data-stagger>
       <h2 class="script-h script-h--sm gold-text reveal" data-fill="rsvp.title"></h2>
       <p class="eyebrow reveal">
@@ -267,13 +272,18 @@
 
 
   <!-- ── closing ── -->
-  <section class="sec sec--closing">
+  <section class="sec sec--closing" id="closingSec">
+    <img class="garland garland--closing" src="assets/lantern-string.svg" alt="">
     <img class="closing__corner closing__corner--l" src="assets/corner-spray.svg" alt="">
     <img class="closing__corner closing__corner--r" src="assets/corner-spray-flip.svg" alt="">
     <div class="sec__inner" data-stagger>
-      <img class="crest reveal reveal--scale" src="assets/crest.svg" alt="">
+      <span class="closing__wreath reveal reveal--scale">
+        <img src="assets/monogram-wreath.svg" alt="">
+        <span class="closing__wreath-mono gold-text" data-fill="monogram"></span>
+      </span>
       <p class="closing__line reveal" data-fill="closing.line1"></p>
       <p class="closing__line reveal" data-fill="closing.line2"></p>
+      <img class="flourish reveal" src="assets/damask.svg" alt="">
       <p class="closing__sign gold-text reveal" data-fill="closing.signoff"></p>
       <p class="closing__date reveal" id="closingDate"></p>
     </div>

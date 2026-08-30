@@ -254,6 +254,16 @@
 
     seal.addEventListener('click', open);
     env.addEventListener('click', function (e) { if (!seal.contains(e.target)) open(); });
+
+    // deep-link straight past the envelope, e.g. for sharing a section
+    var h = (location.hash || '').replace('#', '');
+    if (h === 'open' || h === 'invite' || (h && document.getElementById(h))) {
+      setTimeout(open, 150);
+      var target = document.getElementById(h);
+      if (target) setTimeout(function () {
+        target.scrollIntoView({ block: 'start' });
+      }, reduced ? 300 : 6400);
+    }
   }
 
   /* ── 5. scratch-to-reveal date cards ────────────────────────── */
@@ -406,6 +416,26 @@
 
     if (reduced) return;
 
+    /* the date cards tip in 3D toward a fine pointer */
+    if (window.matchMedia('(pointer:fine)').matches) {
+      var cardWrap = $('#cards');
+      if (cardWrap) {
+        $$('.card', cardWrap).forEach(function (card) {
+          card.addEventListener('pointermove', function (e) {
+            var r = card.getBoundingClientRect();
+            var gx = (e.clientX - r.left) / r.width - .5;
+            var gy = (e.clientY - r.top) / r.height - .5;
+            card.style.transform =
+              'rotateX(' + (-gy * 14).toFixed(2) + 'deg) rotateY(' +
+              (gx * 16).toFixed(2) + 'deg) translateZ(14px)';
+          });
+          card.addEventListener('pointerleave', function () {
+            card.style.transform = '';
+          });
+        });
+      }
+    }
+
     /* hero: scene, arch and florals drift at different rates */
     var scene = $('#heroScene'), depth = $('#heroDepth'), hero = $('#hero'),
         arch = $('.hero__arch'), corners = $$('.hero__corner'),
@@ -469,6 +499,26 @@
       }
     });
     audio.addEventListener('error', function () { btn.hidden = true; });
+  }
+
+  /* ── capture / preview mode (?cap) — for screenshots only ───── */
+  if (/[?&]cap\b/.test(location.search)) {
+    var st = document.createElement('style');
+    st.textContent =
+      '#boot{display:none!important}' +
+      '.env{display:none!important}' +
+      '.invite{opacity:1!important;transform:none!important;filter:none!important}' +
+      '.hero{height:auto!important;min-height:0!important;padding:130px 0 70px}' +
+      '.hero__text{margin-top:0!important}' +
+      '.hero__cue{position:static!important;margin-top:18px}' +
+      '.hero__depth{height:100%}' +
+      '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
+      '.date__done,.date__done .date__laurel{opacity:1!important;transform:translate(-50%,-52%) scale(1)!important}' +
+      '.date__done{transform:none!important}' +
+      '.tl__rail{transform:translateX(-.5px) scaleY(1)!important}' +
+      '.tl__node{transform:rotate(45deg) scale(1)!important}';
+    document.head.appendChild(st);
+    document.documentElement.classList.add('cap');
   }
 
   /* ── go ─────────────────────────────────────────────────────── */
