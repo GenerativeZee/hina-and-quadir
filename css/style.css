@@ -553,7 +553,7 @@ body::after{
 
 /* raised gold relief on the decorative line-art */
 .divider,.crest,.hero__crest,.amp img,.venue__arch,
-.tl__end,.garland,.flourish,.date__laurel,.hero__wreath img{
+.tl__end,.garland,.flourish,.date__laurel,.closing__wreath img{
   filter:var(--relief);
 }
 .eyebrow{
@@ -586,21 +586,57 @@ body::after{
   height:100svh;min-height:560px;
   overflow:hidden;
   display:flex;flex-direction:column;justify-content:flex-start;
-  background:#F5E4C8;
+  background:radial-gradient(120% 90% at 50% 8%,#F7E7CD 0%,#EAD3B2 46%,#D8BC96 78%,#C4A078 100%);
+  /* the frame becomes a window with depth behind it */
+  perspective:900px;
+  perspective-origin:50% 44%;
 }
-.hero__depth{position:absolute;inset:0;z-index:0}
+/* the 3-D room: every plane lives at its own distance and the whole
+   box banks toward the pointer / device tilt (driven from app.js) */
+.hero__depth{
+  position:absolute;inset:0;z-index:0;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.22,.68,.24,1);
+  will-change:transform;
+}
+.hero__plane{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+  will-change:transform;
+  backface-visibility:hidden;
+}
 .hero__scene{
-  position:absolute;inset:-6% 0 -6%;z-index:0;will-change:transform;
+  position:absolute;inset:-10% -6%;z-index:0;will-change:transform,filter;
   opacity:0;transform:scale(1.16);
-  transition:opacity 2s ease,transform 2.6s var(--ease-silk);
+  transition:opacity 2s ease,transform 2.6s var(--ease-silk),filter 2s ease;
 }
-.hero.lit .hero__scene{opacity:1;transform:scale(1)}
+/* the far plane is a touch soft + warm — atmospheric perspective */
+.hero.lit .hero__scene{opacity:1;transform:scale(1);filter:blur(.7px) saturate(1.05)}
 .hero__art{width:100%;height:100%;object-fit:cover}
+
+/* a soft depth cue: warmth gathering low and at the edges, never the centre */
+.hero__haze{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  transform:translateZ(-150px) scale(1.18);
+  background:
+    radial-gradient(72% 60% at 50% 42%,transparent 55%,rgba(216,190,150,.16) 100%),
+    linear-gradient(180deg,transparent 55%,rgba(200,168,124,.22) 100%);
+  opacity:0;transition:opacity 2.4s ease .6s;
+}
+.hero.lit .hero__haze{opacity:1}
+.hero__grain{display:none}
+
+/* resting depth of each plane — app.js layers parallax on top of this */
+.hero__plane--scene   {transform:translateZ(-170px) scale(1.28)}
+.hero__plane--arch    {transform:translateZ(-55px)}
+.hero__plane--corners {transform:translateZ(24px)}
+.hero__plane--lanterns{transform:translateZ(70px)}
+.hero__plane--garland {transform:translateZ(105px)}
 .hero__wash{
   position:absolute;inset:0;
   background:
-    radial-gradient(80% 46% at 50% 34%,rgba(255,250,240,.72),transparent 70%),
-    linear-gradient(180deg,rgba(252,246,236,.86) 0%,rgba(250,242,229,.30) 34%,rgba(246,232,208,.16) 62%,rgba(240,222,196,.55) 100%);
+    radial-gradient(80% 46% at 50% 34%,rgba(255,250,240,.5),transparent 70%),
+    linear-gradient(180deg,rgba(252,246,236,.62) 0%,rgba(250,242,229,.22) 32%,rgba(246,232,208,.12) 60%,rgba(238,218,190,.5) 100%);
 }
 /* light shafts coming down through the arch */
 .hero__rays{
@@ -680,21 +716,11 @@ body::after{
   margin:2px 0 4px;
   filter:drop-shadow(0 2px 18px rgba(196,155,92,.3));
 }
-.hero__joiner{font-family:var(--serif);font-style:italic;font-size:17px;margin:6px 0 0;color:var(--ink-soft)}
-.hero__wreath{
-  position:relative;display:block;width:138px;margin:12px auto 4px;
-}
-.hero__wreath img{width:100%;opacity:.92}
-.hero__wreath-mono{
-  position:absolute;inset:0;display:grid;place-items:center;
-  font-family:var(--script);font-size:34px;line-height:1;
-  padding-bottom:4px;
-  text-shadow:0 1px 0 rgba(255,248,228,.6),0 3px 8px rgba(46,30,12,.32);
-}
+.hero__joiner{font-family:var(--serif);font-style:italic;font-size:17px;margin:14px 0 0;color:var(--ink-soft)}
 .hero__couple{
   font-family:var(--script);
   font-size:clamp(32px,11vw,58px);line-height:1.1;
-  margin:0;
+  margin:18px 0 0;
   filter:drop-shadow(0 3px 22px rgba(180,136,74,.34));
 }
 .hero__cue{
@@ -963,16 +989,13 @@ body::after{
 
 /* shorter phones: pull the hero type in so it clears the couple */
 @media (max-height:720px){
-  .hero__text{margin-top:12vh}
+  .hero__text{margin-top:13vh}
   .hero__welcome{font-size:21px}
-  .hero__wreath{width:110px;margin:6px auto 2px}
-  .hero__wreath-mono{font-size:27px}
-  .hero__joiner{font-size:15px;margin-top:4px}
+  .hero__joiner{font-size:15px;margin-top:10px}
   .hero__lantern{top:96px;width:40px}
 }
 @media (max-height:620px){
-  .hero__text{margin-top:9vh}
-  .hero__wreath{display:none}
+  .hero__text{margin-top:10vh}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -983,6 +1006,8 @@ body::after{
   .tl__rail{transform:translateX(-.5px) scaleY(1)}
   .tl__node{transform:rotate(45deg) scale(1)}
   .hero__scene,.hero__lantern,.hero__corner,.hero__cue,.hero__rays{opacity:1;transform:none}
+  .hero__depth{transform:none!important}
+  .hero__haze{opacity:1}
   .hero__garland,.garland,.date__laurel{opacity:.9!important}
   .date__laurel{transform:translate(-50%,-52%) scale(1)!important}
   .card{transform:none!important}

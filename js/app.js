@@ -213,6 +213,12 @@
       env.classList.add('is-open');
       startMusic();                        // inside the tap, so autoplay is allowed
 
+      // ask for motion access here, while we still have the user's tap
+      try {
+        var DOE = window.DeviceOrientationEvent;
+        if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission()['catch'](function () {});
+      } catch (e) {}
+
       // light bursting out of the wax as it cracks — a first, gentle flare
       var r = seal.getBoundingClientRect();
       setTimeout(function () {
@@ -436,38 +442,69 @@
       }
     }
 
-    /* hero: scene, arch and florals drift at different rates */
-    var scene = $('#heroScene'), depth = $('#heroDepth'), hero = $('#hero'),
-        arch = $('.hero__arch'), corners = $$('.hero__corner'),
-        ticking = false, px = 0, py = 0;
+    /* hero: a small room seen through the frame — every plane sits at its
+       own depth, and the whole room banks toward the pointer / phone tilt */
+    var hero  = $('#hero'),
+        depth = $('#heroDepth'),
+        pScene   = $('.hero__plane--scene'),
+        pArch    = $('.hero__plane--arch'),
+        pCorners = $('.hero__plane--corners'),
+        pLant    = $('.hero__plane--lanterns'),
+        pGarland = $('.hero__plane--garland');
 
-    function frame() {
-      ticking = false;
-      var y = window.scrollY || 0;
-      if (y > hero.offsetHeight + 200) return;
-      scene.style.transform = 'translate3d(' + (px * 14).toFixed(2) + 'px,' +
-        (y * .24 + py * 10).toFixed(1) + 'px,0) scale(1)';
-      if (arch) arch.style.transform = 'translate3d(' + (px * -5).toFixed(2) + 'px,' +
-        (y * .07).toFixed(1) + 'px,0)';
-      corners.forEach(function (c, i) {
-        c.style.transform = 'translate3d(' + (px * (i ? 8 : -8)).toFixed(2) + 'px,' +
-          (y * .04).toFixed(1) + 'px,0)';
-      });
+    // tx/ty = where we want to be (-1..1); cx/cy = eased current
+    var tx = 0, ty = 0, cx = 0, cy = 0, sc = 0, running = false, idle = 0;
+
+    function apply() {
+      // far things move against the pointer, near things with it
+      depth.style.transform =
+        'rotateX(' + (cy * -4.5).toFixed(2) + 'deg) rotateY(' + (cx * 6).toFixed(2) + 'deg)';
+      if (pScene) pScene.style.transform =
+        'translate3d(' + (cx * -14).toFixed(1) + 'px,' + (sc * .22 + cy * -11).toFixed(1) + 'px,0) translateZ(-170px) scale(1.28)';
+      if (pArch) pArch.style.transform =
+        'translate3d(' + (cx * -7).toFixed(1) + 'px,' + (sc * .10 + cy * -6).toFixed(1) + 'px,0) translateZ(-55px)';
+      if (pCorners) pCorners.style.transform =
+        'translate3d(' + (cx * 13).toFixed(1) + 'px,' + (sc * .05 + cy * 9).toFixed(1) + 'px,0) translateZ(24px)';
+      if (pLant) pLant.style.transform =
+        'translate3d(' + (cx * 22).toFixed(1) + 'px,' + (sc * -.02 + cy * 15).toFixed(1) + 'px,0) translateZ(70px)';
+      if (pGarland) pGarland.style.transform =
+        'translate3d(' + (cx * 30).toFixed(1) + 'px,' + (sc * -.06 + cy * 21).toFixed(1) + 'px,0) translateZ(105px)';
     }
-    function request() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
 
-    window.addEventListener('scroll', request, { passive: true });
+    function loop() {
+      running = true;
+      var y = window.scrollY || 0;
+      sc = (y > hero.offsetHeight + 200) ? sc : y;
+      cx += (tx - cx) * .08;
+      cy += (ty - cy) * .08;
+      apply();
+      var moving = Math.abs(tx - cx) + Math.abs(ty - cy) > .001;
+      if (moving) { idle = 0; }
+      else if (++idle > 30) { running = false; return; }
+      requestAnimationFrame(loop);
+    }
+    function kick() { if (!running) requestAnimationFrame(loop); }
 
-    // a whisper of pointer parallax on desktop
+    window.addEventListener('scroll', kick, { passive: true });
+    apply();
+
     if (window.matchMedia('(pointer:fine)').matches) {
       hero.addEventListener('pointermove', function (e) {
         var r = hero.getBoundingClientRect();
-        px = (e.clientX - r.left) / r.width - .5;
-        py = (e.clientY - r.top) / r.height - .5;
-        request();
+        tx = ((e.clientX - r.left) / r.width - .5) * 2;
+        ty = ((e.clientY - r.top) / r.height - .5) * 2;
+        kick();
       });
-      hero.addEventListener('pointerleave', function () { px = py = 0; request(); });
+      hero.addEventListener('pointerleave', function () { tx = ty = 0; kick(); });
     }
+
+    // phone tilt — uses the real depth of the screen
+    window.addEventListener('deviceorientation', function (e) {
+      if (e.gamma == null && e.beta == null) return;
+      var g = Math.max(-1, Math.min(1, (e.gamma || 0) / 26));
+      var b = Math.max(-1, Math.min(1, ((e.beta || 0) - 42) / 26));
+      tx = g; ty = b; kick();
+    }, true);
   }
 
   /* ── 7. music ───────────────────────────────────────────────── */
@@ -508,10 +545,11 @@
       '#boot{display:none!important}' +
       '.env{display:none!important}' +
       '.invite{opacity:1!important;transform:none!important;filter:none!important}' +
-      '.hero{height:auto!important;min-height:0!important;padding:130px 0 70px}' +
+      '.hero{height:auto!important;min-height:0!important;padding:130px 0 70px;perspective:none!important}' +
       '.hero__text{margin-top:0!important}' +
       '.hero__cue{position:static!important;margin-top:18px}' +
-      '.hero__depth{height:100%}' +
+      '.hero__depth,.hero__plane,.hero__plane--scene,.hero__plane--arch,.hero__plane--corners,.hero__plane--lanterns,.hero__plane--garland{transform:none!important;transform-style:flat!important}' +
+      '.hero__haze{opacity:1!important}' +
       '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
       '.date__done,.date__done .date__laurel{opacity:1!important;transform:translate(-50%,-52%) scale(1)!important}' +
       '.date__done{transform:none!important}' +

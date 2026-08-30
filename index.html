@@ -95,40 +95,52 @@
   <!-- ── hero ── -->
   <section class="hero" id="hero">
     <div class="hero__depth" id="heroDepth">
-      <div class="hero__scene" id="heroScene">
-        <img class="hero__art" src="assets/hero-scene.svg" alt="">
-        <div class="hero__wash"></div>
-        <div class="hero__rays"></div>
+      <div class="hero__plane hero__plane--scene">
+        <div class="hero__scene" id="heroScene">
+          <img class="hero__art" src="assets/hero-scene.svg" alt="">
+          <div class="hero__wash"></div>
+          <div class="hero__rays"></div>
+        </div>
       </div>
 
-      <svg class="hero__arch" viewBox="0 0 400 640" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="archGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="640">
-            <stop offset="0" stop-color="#D8B476"/><stop offset=".4" stop-color="#B4884A"/>
-            <stop offset=".7" stop-color="#EDD5A4"/><stop offset="1" stop-color="#A2763E"/>
-          </linearGradient>
-        </defs>
-        <path id="archPath" fill="none" stroke="url(#archGold)" stroke-width="1.6"
-              vector-effect="non-scaling-stroke"/>
-        <path id="archPath2" fill="none" stroke="url(#archGold)" stroke-width="1"
-              opacity=".55" vector-effect="non-scaling-stroke"/>
-      </svg>
+      <div class="hero__haze" aria-hidden="true"></div>
 
-      <img class="hero__garland" src="assets/lantern-string.svg" alt="">
-      <img class="hero__lantern hero__lantern--l" src="assets/lantern.svg" alt="">
-      <img class="hero__lantern hero__lantern--r" src="assets/lantern.svg" alt="">
-      <img class="hero__corner hero__corner--l" src="assets/corner-spray.svg" alt="">
-      <img class="hero__corner hero__corner--r" src="assets/corner-spray-flip.svg" alt="">
+      <div class="hero__plane hero__plane--arch">
+        <svg class="hero__arch" viewBox="0 0 400 640" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="archGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="640">
+              <stop offset="0" stop-color="#D8B476"/><stop offset=".4" stop-color="#B4884A"/>
+              <stop offset=".7" stop-color="#EDD5A4"/><stop offset="1" stop-color="#A2763E"/>
+            </linearGradient>
+          </defs>
+          <path id="archPath" fill="none" stroke="url(#archGold)" stroke-width="1.6"
+                vector-effect="non-scaling-stroke"/>
+          <path id="archPath2" fill="none" stroke="url(#archGold)" stroke-width="1"
+                opacity=".55" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+
+      <div class="hero__plane hero__plane--corners">
+        <img class="hero__corner hero__corner--l" src="assets/corner-spray.svg" alt="">
+        <img class="hero__corner hero__corner--r" src="assets/corner-spray-flip.svg" alt="">
+      </div>
+
+      <div class="hero__plane hero__plane--lanterns">
+        <img class="hero__lantern hero__lantern--l" src="assets/lantern.svg" alt="">
+        <img class="hero__lantern hero__lantern--r" src="assets/lantern.svg" alt="">
+      </div>
+
+      <div class="hero__plane hero__plane--garland">
+        <img class="hero__garland" src="assets/lantern-string.svg" alt="">
+      </div>
+
+      <div class="hero__grain" aria-hidden="true"></div>
     </div>
 
     <div class="hero__text">
       <p class="hero__welcome hl" data-fill="welcome"></p>
       <h1 class="hero__ceremony gold-text hl" data-fill="ceremony"></h1>
       <p class="hero__joiner hl" data-fill="joiner"></p>
-      <span class="hero__wreath hl">
-        <img src="assets/monogram-wreath.svg" alt="">
-        <span class="hero__wreath-mono gold-text" data-fill="monogram"></span>
-      </span>
       <p class="hero__couple gold-text hl" data-fill="couple"></p>
     </div>
 
