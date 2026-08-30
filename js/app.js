@@ -545,11 +545,11 @@
       '#boot{display:none!important}' +
       '.env{display:none!important}' +
       '.invite{opacity:1!important;transform:none!important;filter:none!important}' +
-      '.hero{height:auto!important;min-height:0!important;padding:130px 0 70px;perspective:none!important}' +
-      '.hero__text{margin-top:0!important}' +
-      '.hero__cue{position:static!important;margin-top:18px}' +
-      '.hero__depth,.hero__plane,.hero__plane--scene,.hero__plane--arch,.hero__plane--corners,.hero__plane--lanterns,.hero__plane--garland{transform:none!important;transform-style:flat!important}' +
-      '.hero__haze{opacity:1!important}' +
+      '.hero{height:100svh!important;perspective:none!important}' +
+      '.hero__depth,.hero__plane{transform:none!important;transform-style:flat!important}' +
+      '.hero__scene{animation:none!important;transform:none!important;opacity:1!important}' +
+      '.hero__archimg,.hero__lantern,.hero__flora,.hero__bloom,.hero__haze{opacity:1!important;transform:none!important}' +
+      '.hero__flora--tr{transform:scaleX(-1)!important}.hero__flora--bl{transform:scaleY(-1)!important}.hero__flora--br{transform:scale(-1)!important}' +
       '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
       '.date__done,.date__done .date__laurel{opacity:1!important;transform:translate(-50%,-52%) scale(1)!important}' +
       '.date__done{transform:none!important}' +
@@ -557,6 +557,7 @@
       '.tl__node{transform:rotate(45deg) scale(1)!important}';
     document.head.appendChild(st);
     document.documentElement.classList.add('cap');
+    var hp = document.getElementById('hero'); if (hp) hp.classList.add('lit');
   }
 
   /* ── go ─────────────────────────────────────────────────────── */

@@ -580,23 +580,20 @@ body::after{
 .reveal--right{transform:perspective(1200px) translate(30px,14px) rotateX(12deg) rotateY(-10deg)}
 .reveal.in{opacity:1;transform:none;filter:none}
 
-/* ── hero ── */
+/* ── hero — a golden-hour vista framed by a carved ivory arch ── */
 .hero{
   position:relative;
-  height:100svh;min-height:560px;
+  height:100svh;min-height:600px;
   overflow:hidden;
   display:flex;flex-direction:column;justify-content:flex-start;
-  background:radial-gradient(120% 90% at 50% 8%,#F7E7CD 0%,#EAD3B2 46%,#D8BC96 78%,#C4A078 100%);
-  /* the frame becomes a window with depth behind it */
-  perspective:900px;
-  perspective-origin:50% 44%;
+  background:linear-gradient(180deg,#F1E2C0 0%,#F8E4B4 40%,#FBD79A 60%,#F6E6CC 100%);
+  perspective:1100px;
+  perspective-origin:50% 42%;
 }
-/* the 3-D room: every plane lives at its own distance and the whole
-   box banks toward the pointer / device tilt (driven from app.js) */
 .hero__depth{
   position:absolute;inset:0;z-index:0;
   transform-style:preserve-3d;
-  transition:transform .5s cubic-bezier(.22,.68,.24,1);
+  transition:transform .55s cubic-bezier(.22,.68,.24,1);
   will-change:transform;
 }
 .hero__plane{
@@ -605,133 +602,143 @@ body::after{
   will-change:transform;
   backface-visibility:hidden;
 }
-.hero__scene{
-  position:absolute;inset:-10% -6%;z-index:0;will-change:transform,filter;
-  opacity:0;transform:scale(1.16);
-  transition:opacity 2s ease,transform 2.6s var(--ease-silk),filter 2s ease;
-}
-/* the far plane is a touch soft + warm — atmospheric perspective */
-.hero.lit .hero__scene{opacity:1;transform:scale(1);filter:blur(.7px) saturate(1.05)}
-.hero__art{width:100%;height:100%;object-fit:cover}
+/* resting depth — app.js adds parallax drift + bank on top */
+.hero__plane--scene   {transform:translateZ(-140px) scale(1.08)}
+.hero__plane--arch    {transform:translateZ(-30px)}
+.hero__plane--lanterns{transform:translateZ(46px)}
+.hero__plane--corners {transform:translateZ(84px)}
 
-/* a soft depth cue: warmth gathering low and at the edges, never the centre */
+/* far: the vista */
+.hero__scene{
+  position:absolute;inset:-4% -6%;will-change:transform,filter;
+  opacity:0;transform:scale(1.12);
+  transition:opacity 2.2s ease,transform 3s var(--ease-silk),filter 2s ease;
+}
+.hero.lit .hero__scene{
+  opacity:1;transform:scale(1);
+  filter:blur(.3px) saturate(1.22) contrast(1.09) brightness(.99);
+  animation:heroDrift 30s ease-in-out 3s infinite alternate;
+}
+@keyframes heroDrift{from{transform:scale(1)}to{transform:scale(1.07) translateY(-1.4%)}}
+.hero__art{width:100%;height:100%;object-fit:cover;object-position:50% 48%;display:block}
+
+/* a whisper of extra warmth low on the horizon */
+.hero__bloom{
+  position:absolute;left:50%;top:74%;width:80%;aspect-ratio:1.5;
+  transform:translate(-50%,-50%) translateZ(-140px);
+  pointer-events:none;mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(ellipse at 50% 50%,
+     rgba(255,238,198,.5) 0%,rgba(255,226,168,.16) 34%,transparent 66%);
+  transition:opacity 2.6s ease .5s;
+}
+.hero.lit .hero__bloom{opacity:1;animation:bloomBreathe 12s ease-in-out 3s infinite}
+@keyframes bloomBreathe{0%,100%{opacity:.7}50%{opacity:.95}}
+
+/* a faint golden pool of light behind the title + a low vignette */
 .hero__haze{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  transform:translateZ(-150px) scale(1.18);
+  transform:translateZ(-30px);
   background:
-    radial-gradient(72% 60% at 50% 42%,transparent 55%,rgba(216,190,150,.16) 100%),
-    linear-gradient(180deg,transparent 55%,rgba(200,168,124,.22) 100%);
+    radial-gradient(46% 24% at 50% 24%,rgba(255,250,235,.55),transparent 72%),
+    linear-gradient(180deg,rgba(255,250,238,.28) 0%,transparent 18%,transparent 66%,rgba(150,112,66,.34) 100%);
   opacity:0;transition:opacity 2.4s ease .6s;
 }
 .hero.lit .hero__haze{opacity:1}
-.hero__grain{display:none}
 
-/* resting depth of each plane — app.js layers parallax on top of this */
-.hero__plane--scene   {transform:translateZ(-170px) scale(1.28)}
-.hero__plane--arch    {transform:translateZ(-55px)}
-.hero__plane--corners {transform:translateZ(24px)}
-.hero__plane--lanterns{transform:translateZ(70px)}
-.hero__plane--garland {transform:translateZ(105px)}
-.hero__wash{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(80% 46% at 50% 34%,rgba(255,250,240,.5),transparent 70%),
-    linear-gradient(180deg,rgba(252,246,236,.62) 0%,rgba(250,242,229,.22) 32%,rgba(246,232,208,.12) 60%,rgba(238,218,190,.5) 100%);
+/* mid: the carved ivory arch frame */
+.hero__archimg{
+  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  opacity:0;transform:scale(1.03);
+  transition:opacity 2s ease .3s,transform 2.4s var(--ease-silk) .3s;
+  filter:drop-shadow(0 24px 46px rgba(70,46,20,.42)) drop-shadow(0 4px 10px rgba(70,46,20,.3));
 }
-/* light shafts coming down through the arch */
-.hero__rays{
-  position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;
-  background:
-    linear-gradient(172deg,rgba(255,248,226,.55) 0%,transparent 46%),
-    radial-gradient(46% 30% at 50% 22%,rgba(255,250,232,.65),transparent 72%);
-  transition:opacity 2.4s ease .5s;
-}
-.hero.lit .hero__rays{opacity:1;animation:rayBreathe 9s ease-in-out 2.6s infinite}
-@keyframes rayBreathe{0%,100%{opacity:.75}50%{opacity:1}}
+.hero.lit .hero__archimg{opacity:1;transform:none}
 
-.hero__arch{
-  position:absolute;inset:14px 12px 12px;z-index:2;
-  width:calc(100% - 24px);height:calc(100% - 26px);
-  pointer-events:none;
-  filter:drop-shadow(0 0 10px rgba(206,166,102,.3));
-}
-.hero__arch path{transition:stroke-dashoffset 2.2s var(--ease-silk) .35s}
-
+/* near: hanging lanterns inside the arch */
 .hero__lantern{
-  position:absolute;top:118px;z-index:4;width:46px;
-  transform-origin:50% 4%;
+  position:absolute;width:min(15vw,62px);
+  transform-origin:50% 3%;
   opacity:0;
-  transition:opacity 1.3s ease 1.1s;
-  filter:drop-shadow(0 0 12px rgba(232,190,116,.55));
+  filter:drop-shadow(0 6px 16px rgba(110,72,26,.45));
+  transition:opacity 1.4s ease 1s;
 }
-.hero.lit .hero__lantern{opacity:.85;animation:sway 6.5s ease-in-out 1.4s infinite}
-.hero__lantern--l{left:16px}
-.hero__lantern--r{right:16px;animation-delay:-3.2s!important}
-@keyframes sway{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
+.hero.lit .hero__lantern{opacity:1;animation:sway 7s ease-in-out 1.4s infinite}
+.hero__lantern--l1{left:3%;  top:19%}
+.hero__lantern--l2{left:-1%; top:30%; width:min(13vw,54px); animation-delay:-2.4s!important}
+.hero__lantern--l3{left:6%;  top:39%; width:min(11vw,46px); animation-delay:-4.1s!important}
+.hero__lantern--r1{right:3%;  top:19%; animation-delay:-1.2s!important}
+.hero__lantern--r2{right:-1%; top:30%; width:min(13vw,54px); animation-delay:-3.6s!important}
+.hero__lantern--r3{right:6%;  top:39%; width:min(11vw,46px); animation-delay:-5.5s!important}
+@keyframes sway{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
 
-/* strings of golden hanging lanterns across the top */
-.hero__garland{
-  position:absolute;left:-2%;top:0;width:104%;max-width:none;z-index:5;
-  pointer-events:none;opacity:0;
-  transform-origin:50% 0;
-  transition:opacity 1.6s ease .6s;
-  filter:var(--relief);
+/* nearest: florals bleeding in from all four corners */
+.hero__flora{
+  position:absolute;width:min(84vw,410px);
+  opacity:0;
+  filter:drop-shadow(0 14px 26px rgba(96,64,32,.32)) saturate(1.05);
+  transition:opacity 1.6s ease .5s,transform 1.8s var(--ease-lift) .5s;
 }
-.hero.lit .hero__garland{opacity:.95;animation:garlandSway 8s ease-in-out 1.6s infinite}
-@keyframes garlandSway{0%,100%{transform:rotate(-.7deg)}50%{transform:rotate(.7deg)}}
+.hero__flora--tl{left:-25%;top:-19%;transform:translate(-14px,-14px)}
+.hero__flora--tr{right:-25%;top:-19%;transform:translate(14px,-14px) scaleX(-1)}
+.hero__flora--bl{left:-25%;bottom:-20%;transform:translate(-14px,14px) scaleY(-1)}
+.hero__flora--br{right:-25%;bottom:-20%;transform:translate(14px,14px) scale(-1)}
+.hero.lit .hero__flora{opacity:1;transform:none}
+.hero.lit .hero__flora--tr{transform:scaleX(-1)}
+.hero.lit .hero__flora--bl{transform:scaleY(-1)}
+.hero.lit .hero__flora--br{transform:scale(-1)}
 
-.garland{
-  position:absolute;left:-3%;top:0;width:106%;max-width:none;z-index:1;
-  pointer-events:none;opacity:.9;
-  transform-origin:50% 0;
-  animation:garlandSway 9s ease-in-out infinite;
+/* ── the title, set inside the top of the arch opening ── */
+.hero__text{
+  position:relative;z-index:6;text-align:center;
+  width:min(66%,300px);margin:12.5vh auto 0;
+  padding:0 6px;
 }
-
-.hero__corner{
-  position:absolute;top:-10px;z-index:3;width:54%;
-  opacity:0;mix-blend-mode:multiply;
-  transition:opacity 1.5s ease .55s,transform 1.8s var(--ease-lift) .55s;
-}
-.hero__corner--l{left:-8%;transform:translate(-22px,-22px)}
-.hero__corner--r{right:-8%;transform:translate(22px,-22px)}
-.hero.lit .hero__corner{opacity:.85;transform:none}
-
-.hero__text{position:relative;z-index:4;text-align:center;padding:0 32px;margin-top:19vh}
 .hl{
-  opacity:0;transform:perspective(1000px) translateY(24px) translateZ(-50px) rotateX(16deg);
-  transform-origin:50% 100%;filter:blur(6px);
+  opacity:0;transform:translateY(20px);filter:blur(5px);
   transition:opacity 1.1s var(--ease-lift),transform 1.3s var(--ease-lift),filter .9s ease;
 }
 .hero.lit .hl{opacity:1;transform:none;filter:none}
-.hero.lit .hl:nth-child(1){transition-delay:.75s}
-.hero.lit .hl:nth-child(2){transition-delay:.92s}
-.hero.lit .hl:nth-child(3){transition-delay:1.06s}
-.hero.lit .hl:nth-child(4){transition-delay:1.18s}
-.hero.lit .hl:nth-child(5){transition-delay:1.30s}
+.hero.lit .hl:nth-child(1){transition-delay:.7s}
+.hero.lit .hl:nth-child(2){transition-delay:.88s}
+.hero.lit .hl:nth-child(3){transition-delay:1.04s}
+.hero.lit .hl:nth-child(4){transition-delay:1.2s}
 
-.hero__welcome{font-family:var(--script2);font-size:24px;margin:0;color:var(--ink-soft)}
+.hero__welcome{
+  font-family:var(--serif);font-size:clamp(18px,4.8vw,22px);letter-spacing:.03em;
+  margin:0;color:#4a3620;
+  text-shadow:0 1px 3px rgba(255,248,228,.9),0 0 14px rgba(255,246,224,.7);
+}
 .hero__ceremony{
   font-family:var(--script);font-weight:400;
-  font-size:clamp(34px,9.6vw,46px);line-height:1.06;
-  margin:2px 0 4px;
-  filter:drop-shadow(0 2px 18px rgba(196,155,92,.3));
+  font-size:clamp(31px,8.6vw,41px);line-height:1.08;
+  margin:2px 0 6px;color:#6f5230;
+  -webkit-text-fill-color:currentColor;background:none;
+  text-shadow:0 1px 7px rgba(255,247,226,.85);
 }
-.hero__joiner{font-family:var(--serif);font-style:italic;font-size:17px;margin:14px 0 0;color:var(--ink-soft)}
+.hero__joiner{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--serif);font-style:italic;font-size:16px;margin:4px 0;color:#7a6041;
+}
+.hero__joiner-rule{width:44px;height:1px;background:linear-gradient(90deg,transparent,rgba(140,106,60,.7),transparent);position:relative}
+.hero__joiner-rule::after{content:'';position:absolute;top:50%;right:-3px;width:4px;height:4px;background:rgba(140,106,60,.8);transform:translateY(-50%) rotate(45deg)}
+.hero__joiner-rule:last-child::after{right:auto;left:-3px}
 .hero__couple{
   font-family:var(--script);
-  font-size:clamp(32px,11vw,58px);line-height:1.1;
-  margin:18px 0 0;
-  filter:drop-shadow(0 3px 22px rgba(180,136,74,.34));
+  font-size:clamp(40px,15vw,72px);line-height:1;
+  margin:8px 0 0;color:#7c5b34;
+  -webkit-text-fill-color:currentColor;background:none;
+  text-shadow:0 2px 10px rgba(255,246,224,.55),0 1px 0 rgba(255,252,240,.6);
 }
 .hero__cue{
-  position:absolute;left:0;right:0;bottom:max(26px,env(safe-area-inset-bottom));
-  z-index:4;text-align:center;color:var(--ink-soft);
-  font-family:var(--script2);font-size:19px;
+  position:absolute;left:0;right:0;bottom:max(30px,env(safe-area-inset-bottom));
+  z-index:6;text-align:center;color:#8a6a3f;
+  font-family:var(--script);font-size:22px;
+  text-shadow:0 1px 6px rgba(255,246,224,.7);
   opacity:0;transition:opacity 1.2s ease 1.9s;
 }
 .hero.lit .hero__cue{opacity:1;animation:cueBob 2.4s ease-in-out 2.4s infinite}
-.hero__cue svg{width:22px;margin:2px auto 0;opacity:.75}
-@keyframes cueBob{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(7px);opacity:1}}
+.hero__cue svg{width:22px;margin:0 auto;opacity:.8}
+@keyframes cueBob{0%,100%{transform:translateY(0);opacity:.8}50%{transform:translateY(7px);opacity:1}}
 
 /* ── scratch cards ── */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;perspective:900px}
@@ -1005,10 +1012,15 @@ body::after{
   .invite{filter:none;transform:none}
   .tl__rail{transform:translateX(-.5px) scaleY(1)}
   .tl__node{transform:rotate(45deg) scale(1)}
-  .hero__scene,.hero__lantern,.hero__corner,.hero__cue,.hero__rays{opacity:1;transform:none}
+  .hero__scene,.hero__cue{opacity:1}
+  .hero__scene{transform:none!important;animation:none!important}
+  .hero__archimg,.hero__lantern,.hero__flora,.hero__bloom,.hero__haze{opacity:1!important}
+  .hero__flora{transform:none!important}
+  .hero__flora--tr{transform:scaleX(-1)!important}
+  .hero__flora--bl{transform:scaleY(-1)!important}
+  .hero__flora--br{transform:scale(-1)!important}
   .hero__depth{transform:none!important}
-  .hero__haze{opacity:1}
-  .hero__garland,.garland,.date__laurel{opacity:.9!important}
+  .garland,.date__laurel{opacity:.9!important}
   .date__laurel{transform:translate(-50%,-52%) scale(1)!important}
   .card{transform:none!important}
 }

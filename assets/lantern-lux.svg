@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 360">
+<defs>
+  <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#7C5A22"/><stop offset=".28" stop-color="#D9A94C"/>
+    <stop offset=".5" stop-color="#F6E1A6"/><stop offset=".72" stop-color="#D9A94C"/>
+    <stop offset="1" stop-color="#7C5A22"/>
+  </linearGradient>
+  <radialGradient id="flame" cx="50%" cy="54%" r="60%">
+    <stop offset="0" stop-color="#FFF6DC"/><stop offset=".4" stop-color="#FFE0A0"/>
+    <stop offset=".75" stop-color="#F7B25A"/><stop offset="1" stop-color="rgba(244,160,70,0)"/>
+  </radialGradient>
+  <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="rgba(255,224,160,.75)"/><stop offset="1" stop-color="rgba(255,224,160,0)"/>
+  </radialGradient>
+  <filter id="lg"><feGaussianBlur stdDeviation="1"/></filter>
+</defs>
+<line x1="75.0" y1="0" x2="75.0" y2="54" stroke="url(#brass)" stroke-width="3"/>
+<circle cx="75.0" cy="60" r="7" fill="none" stroke="url(#brass)" stroke-width="3"/>
+<path d="M71.0,66 L79.0,66 L77.0,80 L73.0,80 Z" fill="url(#brass)"/>
+<!-- glow -->
+<ellipse cx="75.0" cy="180" rx="70" ry="96" fill="url(#halo)"/>
+<!-- cap -->
+<path d="M41.0,92 L109.0,92 L95.0,70 L55.0,70 Z" fill="url(#brass)"/>
+<path d="M55.0,70 L95.0,70 L83.0,54 L67.0,54 Z" fill="url(#brass)"/>
+<circle cx="75.0" cy="50" r="4" fill="#F6E1A6"/>
+<!-- body: six-sided glass lantern -->
+<path d="M37.0,96 L113.0,96 L105.0,250 L45.0,250 Z" fill="rgba(255,240,205,.30)" stroke="url(#brass)" stroke-width="4"/>
+<path d="M45.0,250 L105.0,250 L95.0,270 L55.0,270 Z" fill="url(#brass)"/>
+<g filter="url(#lg)"><ellipse cx="75.0" cy="176" rx="26" ry="46" fill="url(#flame)"/></g>
+<!-- ribs -->
+<line x1="75.0" y1="96" x2="75.0" y2="250" stroke="url(#brass)" stroke-width="2.5" opacity=".8"/>
+<line x1="56.0" y1="96" x2="60.0" y2="250" stroke="url(#brass)" stroke-width="2" opacity=".55"/>
+<line x1="94.0" y1="96" x2="90.0" y2="250" stroke="url(#brass)" stroke-width="2" opacity=".55"/>
+<path d="M45.0,150 Q75.0,140 105.0,150" fill="none" stroke="url(#brass)" stroke-width="2.5"/>
+<path d="M43.0,210 Q75.0,200 107.0,210" fill="none" stroke="url(#brass)" stroke-width="2.5"/>
+<!-- finial + tassel -->
+<circle cx="75.0" cy="278" r="5" fill="url(#brass)"/>
+<line x1="75.0" y1="283" x2="75.0" y2="300" stroke="url(#brass)" stroke-width="2"/>
+<circle cx="75.0" cy="304" r="4" fill="#D9A94C"/>
+</svg>
