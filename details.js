@@ -7,72 +7,96 @@
 window.INVITE = {
 
   /* ── Browser tab ───────────────────────────────────────────────── */
-  pageTitle: "Daanish & Adeena — Nikkah Invitation",
+  pageTitle: "Hina & Quadir — Nikah Invitation",
 
   /* ── The sealed envelope ───────────────────────────────────────── */
-  monogram: "D&A",                 // the initials pressed into the wax seal
+  monogram: "H&Q",                 // the initials pressed into the wax seal
   openHint: "Tap the seal to open",
-  cardTeaser: "With the blessings of Allah",
+  cardTeaser: "In the name of Allah",
 
   /* ── Hero ──────────────────────────────────────────────────────── */
-  welcome: "Welcome to the",
-  ceremony: "Nikkah Ceremony",
+  welcome: "In Sha Allah",
+  ceremony: "Nikah Ceremony",
   joiner: "of",
-  couple: "Daanish &amp; Adeena",   // use &amp; for the ampersand
-  scrollCue: "Scroll down",
+  couple: "Hina &amp; Quadir",      // use &amp; for the ampersand
+  scrollCue: "Scroll to begin",
 
   /* ── The date (revealed by scratching) ─────────────────────────── */
   date: {
-    day: "10",
-    month: "January",
-    year: "2027",
-    weekday: "Sunday",
+    day: "14",
+    month: "November",
+    year: "2026",
+    weekday: "Saturday",
     scratchLabel: "Scratch to reveal the date",
     revealedNote: "Do save the date"
   },
 
   /* ── The two families ──────────────────────────────────────────── */
   groom: {
-    name: "Daanish",
+    name: "Md. Quadir",
     relation: "Son of",
-    parents: "Mr &amp; Mrs A. Siddiqui"
+    parents: "Mr Syed Mohd. Manzar Imam"
   },
   bride: {
-    name: "Adeena",
+    name: "Hina Rafiq",
     relation: "Daughter of",
-    parents: "Mr &amp; Mrs Ch. Farooqi"
+    parents: "Mrs Nasreen Rafiq &middot; Wife of Late Mohd. Rafiq"
   },
 
   /* ── The note to guests ────────────────────────────────────────── */
-  letterTitle: "Dear Friends and Family",
+  letterTitle: "Bismillah ir-Rahman ir-Rahim",
   letterBody:
-    "Join us for an evening of love, laughter, duas, and unforgettable " +
-    "memories as we begin our forever.",
+    "Mrs. Nasreen Rafiq requests the honour of your presence on the " +
+    "auspicious occasion of the Nikah ceremony of her beloved daughter " +
+    "Hina, as two families are joined as one by the grace of Allah.",
 
-  /* ── Order of the evening ──────────────────────────────────────── */
-  timelineTitle: "Wedding Timeline",
+  /* ── Order of the celebrations ─────────────────────────────────── */
+  timelineTitle: "The Celebrations",
   timeline: [
-    { time: "6:00 PM", title: "Guest Arrival",   note: "Welcome drinks" },
-    { time: "7:00 PM", title: "Nikkah Ceremony", note: "Followed by duas" },
-    { time: "8:00 PM", title: "Dinner",          note: "Served in the courtyard" },
-    { time: "9:30 PM", title: "Celebrations",    note: "Music and dancing" },
-    { time: "11:00 PM", title: "Rukhsati",       note: "A farewell with love" }
+    { time: "12 Nov", title: "Haldi Ceremony", note: "Thursday, 7:00 PM · Zayan Garden, Aligarh" },
+    { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday, 7:00 PM onwards · Habib Garden" },
+    { time: "Thereafter", title: "Dinner",     note: "Served following the Nikah, In Sha Allah" }
   ],
 
-  /* ── Where ─────────────────────────────────────────────────────── */
+  /* ── Where (the Nikah) ─────────────────────────────────────────── */
   venue: {
     title: "The Venue",
-    name: "Falaknuma Banquet Hall",
-    address: "12 Rose Garden Road, Banjara Hills, Hyderabad 500034",
-    mapsUrl: "https://maps.google.com/?q=Banjara+Hills+Hyderabad",
+    name: "Habib Garden",
+    address: "Marris Road, Aligarh, Uttar Pradesh",
+    mapsUrl: "https://maps.google.com/?q=Habib+Garden+Marris+Road+Aligarh",
     mapsLabel: "Open in Maps"
+  },
+
+  /* ── The Haldi ceremony ────────────────────────────────────────── */
+  haldi: {
+    title: "Haldi Ceremony",
+    intro: "We cordially invite you to the Haldi ceremony of",
+    name: "Hina Rafiq",
+    datetime: "Thursday, 12th November 2026 &middot; 7:00 PM onwards",
+    venueName: "Zayan Garden",
+    venueAddr: "Manzoor Gandhi Road, Aligarh",
+    mapsUrl: "https://maps.google.com/?q=Zayan+Garden+Manzoor+Gandhi+Road+Aligarh",
+    mapsLabel: "Open in Maps",
+    note: "Your presence will make this occasion even more special"
+  },
+
+  /* ── R.S.V.P. ──────────────────────────────────────────────────── */
+  rsvp: {
+    title: "R.S.V.P.",
+    intro: "Kindly confirm your presence with",
+    names: [
+      "Mohd. Amir Rafiq",
+      "Danish Hussain Khan",
+      "Diyan Hussain Khan",
+      "Ammar Amir"
+    ]
   },
 
   /* ── Closing ───────────────────────────────────────────────────── */
   closing: {
-    line1: "We cannot wait to celebrate",
-    line2: "with you",
-    signoff: "Daanish &amp; Adeena"
+    line1: "Your presence will make this",
+    line2: "occasion even more special",
+    signoff: "Hina &amp; Quadir"
   },
 
   /* ── Music ─────────────────────────────────────────────────────── */

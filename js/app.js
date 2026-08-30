@@ -56,6 +56,23 @@
     if (D.venue && D.venue.mapsUrl) mb.href = D.venue.mapsUrl;
     else mb.hidden = true;
 
+    var hb = $('#haldiMapsBtn');
+    if (hb) {
+      if (D.haldi && D.haldi.mapsUrl) hb.href = D.haldi.mapsUrl;
+      else hb.hidden = true;
+    }
+
+    var rl = $('#rsvpList');
+    if (rl && D.rsvp && D.rsvp.names) {
+      D.rsvp.names.forEach(function (nm, i) {
+        var li = document.createElement('li');
+        li.className = 'rsvp__name';
+        li.style.setProperty('--i', i);
+        li.innerHTML = nm;
+        rl.appendChild(li);
+      });
+    }
+
     $('#closingDate').innerHTML =
       [D.date.day, D.date.month, D.date.year].filter(Boolean).join(' &middot; ');
 
@@ -196,20 +213,24 @@
       env.classList.add('is-open');
       startMusic();                        // inside the tap, so autoplay is allowed
 
-      // light bursting out of the wax as it cracks
+      // light bursting out of the wax as it cracks — a first, gentle flare
       var r = seal.getBoundingClientRect();
       setTimeout(function () {
-        window.FX.burst(r.left + r.width / 2, r.top + r.height / 2, 64);
-      }, 70);
+        window.FX.burst(r.left + r.width / 2, r.top + r.height / 2, 40);
+      }, 90);
+      // then a fuller shower as the flaps begin to fall
+      setTimeout(function () {
+        window.FX.burst(r.left + r.width / 2, r.top + r.height / 2, 72);
+      }, reduced ? 140 : 1150);
 
-      var t1 = reduced ? 60  : 2750,       // camera begins to push in
-          t2 = reduced ? 160 : 3450,       // through the card, into the hero
-          t3 = reduced ? 200 : 5000;       // settle
+      var t1 = reduced ? 60  : 4300,       // camera begins to push in
+          t2 = reduced ? 160 : 5900,       // through the card, into the hero
+          t3 = reduced ? 200 : 7900;       // settle
 
       // the monogram on the card catches the light once it is uncovered
       setTimeout(function () {
         var m = $('.env__card-mono'); if (m) m.classList.add('lit');
-      }, reduced ? 0 : 1450);
+      }, reduced ? 0 : 2300);
 
       setTimeout(function () { env.classList.add('is-through'); }, t1);
 

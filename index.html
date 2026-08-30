@@ -54,6 +54,13 @@
         <!-- specular sweep travelling across the embossed paper -->
         <div class="env__sheen"></div>
 
+        <!-- golden lightning tracing the embossed filigree -->
+        <div class="env__gilt" aria-hidden="true">
+          <span class="env__gilt-layer env__gilt-base"></span>
+          <span class="env__gilt-layer env__gilt-strike"></span>
+          <span class="env__gilt-layer env__gilt-strike env__gilt-strike--2"></span>
+        </div>
+
         <!-- wax seal, in two halves so it can break -->
         <button class="seal" id="seal" type="button" aria-label="Open the invitation">
           <span class="seal__halo"></span>
@@ -218,6 +225,43 @@
           <span data-fill="venue.mapsLabel"></span>
         </a>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ── haldi ── -->
+  <section class="sec sec--haldi">
+    <img class="closing__corner closing__corner--l" src="assets/corner-spray.svg" alt="">
+    <img class="closing__corner closing__corner--r" src="assets/corner-spray-flip.svg" alt="">
+    <div class="sec__inner">
+      <h2 class="script-h gold-text reveal" data-fill="haldi.title"></h2>
+      <div class="haldi reveal" data-stagger>
+        <p class="haldi__intro" data-fill="haldi.intro"></p>
+        <p class="haldi__name gold-text" data-fill="haldi.name"></p>
+        <img class="divider" src="assets/divider.svg" alt="">
+        <p class="haldi__when" data-fill="haldi.datetime"></p>
+        <p class="venue__name" data-fill="haldi.venueName"></p>
+        <p class="venue__addr" data-fill="haldi.venueAddr"></p>
+        <a class="btn" id="haldiMapsBtn" target="_blank" rel="noopener">
+          <span data-fill="haldi.mapsLabel"></span>
+        </a>
+        <p class="haldi__note" data-fill="haldi.note"></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── rsvp ── -->
+  <section class="sec sec--rsvp">
+    <div class="sec__inner" data-stagger>
+      <h2 class="script-h script-h--sm gold-text reveal" data-fill="rsvp.title"></h2>
+      <p class="eyebrow reveal">
+        <span class="spark">&#10022;</span>
+        <span data-fill="rsvp.intro"></span>
+        <span class="spark">&#10022;</span>
+      </p>
+      <ul class="rsvp__list reveal" id="rsvpList"></ul>
+      <img class="divider reveal" src="assets/divider.svg" alt="">
     </div>
   </section>
 
