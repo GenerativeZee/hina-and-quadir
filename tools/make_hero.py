@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
-"""Hand-built hero art for the opening page — warm golden-hour vista,
-an ivory cusped arch with jali columns, lush corner florals and a
-glowing lantern.  Stylised, soft-focus, luxurious.  Pure SVG."""
+"""Hand-built hero art for the opening page — a soft ivory vista through a
+carved arch, glowing jhoomar lanterns and cream corner florals.  Palette
+matches the rest of the site (ivory / paper / warm ink / gold)."""
 import math
 
-# ── shared palette ────────────────────────────────────────────────
-CREAM   = "#FBF3E4"
-IVORY   = "#F3E4C4"
-IVORY_D = "#D8BE93"     # shadow side
-IVORY_L = "#FFFBEF"     # lit side
-GOLD    = "#C99A44"
-GOLD_D  = "#8A6524"
-GOLD_L  = "#F3DCA0"
-SKY_TOP = "#EAD9B4"
-SKY_MID = "#F6DCA8"
-SKY_LOW = "#FBCE86"
-SUN     = "#FFF0CE"
-BLUSH   = "#F6E4D2"
-SAGE    = "#C9CDB2"
+# ── shared palette — the site tokens ─────────────────────────────
+CREAM   = "#FBF4EA"    # --ivory
+IVORY   = "#F1E6D2"
+IVORY_D = "#DECBA6"    # shadow side
+IVORY_L = "#FEF9EE"    # lit side
+GOLD    = "#946323"    # --gold
+GOLD_D  = "#573914"    # --gold-deep
+GOLD_L  = "#D9B87C"    # --gold-lt
+SKY_TOP = "#EFE4CF"
+SKY_MID = "#F6EEDC"
+SKY_LOW = "#FBF4E6"
+SUN     = "#FFFCF3"
+BLUSH   = "#F7ECDD"
 
 
 def w(path, s):
@@ -34,29 +33,31 @@ def vista():
     cx = W / 2
     M = 0.72                                   # overall mosque scale
 
+    DBASE, DLIT, DSHAD, DTIP = "#ECDFC4", "#FEFAF0", "#DCCAA6", "#F3EAD6"
+
     def dome(dcx, base, rw, rh):
-        # warm-lit onion dome with a bright sun-side crescent and shadow side
+        # a soft onion dome: pale ivory, a gentle lit crescent, a soft shadow
         top = base - rh * 1.62
         return (
             f'<path d="M{dcx-rw},{base} C{dcx-rw},{base-rh*1.12} {dcx-rw*0.55},{base-rh*1.55} {dcx},{top} '
-            f'C{dcx+rw*0.55},{base-rh*1.55} {dcx+rw},{base-rh*1.12} {dcx+rw},{base} Z" fill="#E3CDA2"/>'
+            f'C{dcx+rw*0.55},{base-rh*1.55} {dcx+rw},{base-rh*1.12} {dcx+rw},{base} Z" fill="{DBASE}"/>'
             f'<path d="M{dcx},{top} C{dcx+rw*0.52},{base-rh*1.5} {dcx+rw},{base-rh*1.05} {dcx+rw},{base} '
-            f'C{dcx+rw*0.5},{base} {dcx+rw*0.2},{base-rh*0.7} {dcx+rw*0.1},{top+rh*0.2} Z" fill="#FBF0D6"/>'
+            f'C{dcx+rw*0.5},{base} {dcx+rw*0.2},{base-rh*0.7} {dcx+rw*0.1},{top+rh*0.2} Z" fill="{DLIT}" opacity=".85"/>'
             f'<path d="M{dcx-rw},{base} C{dcx-rw},{base-rh*1.12} {dcx-rw*0.62},{base-rh*1.5} {dcx-rw*0.2},{top+rh*0.15} '
-            f'C{dcx-rw*0.4},{base-rh*0.7} {dcx-rw*0.7},{base-rh*0.3} {dcx-rw*0.55},{base} Z" fill="#C7AC7E"/>'
+            f'C{dcx-rw*0.4},{base-rh*0.7} {dcx-rw*0.7},{base-rh*0.3} {dcx-rw*0.55},{base} Z" fill="{DSHAD}" opacity=".8"/>'
             f'<path d="M{dcx},{top} C{dcx-rw*0.15},{top-rh*0.18} {dcx-rw*0.09},{top-rh*0.34} {dcx},{top-rh*0.46} '
-            f'C{dcx+rw*0.09},{top-rh*0.34} {dcx+rw*0.15},{top-rh*0.18} {dcx},{top} Z" fill="#EADFC0"/>'
-            f'<rect x="{dcx-2.5}" y="{top-rh*0.46-rh*0.18}" width="5" height="{rh*0.2}" fill="#C99A44"/>'
-            f'<circle cx="{dcx}" cy="{top-rh*0.46-rh*0.2}" r="4" fill="#F3DCA0"/>'
+            f'C{dcx+rw*0.09},{top-rh*0.34} {dcx+rw*0.15},{top-rh*0.18} {dcx},{top} Z" fill="{DTIP}"/>'
+            f'<rect x="{dcx-2.2}" y="{top-rh*0.46-rh*0.18}" width="4.4" height="{rh*0.2}" fill="{GOLD}"/>'
+            f'<circle cx="{dcx}" cy="{top-rh*0.46-rh*0.2}" r="3.6" fill="{GOLD_L}"/>'
         )
 
     def minaret(mcx, base, top, wd):
         return (
             f'<rect x="{mcx-wd/2}" y="{top}" width="{wd}" height="{base-top}" fill="url(#minG)"/>'
-            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.30}" width="{wd*1.6}" height="{wd*0.55}" fill="#E3CDA2"/>'
-            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.58}" width="{wd*1.6}" height="{wd*0.55}" fill="#E3CDA2"/>'
+            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.30}" width="{wd*1.6}" height="{wd*0.55}" fill="{DBASE}"/>'
+            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.58}" width="{wd*1.6}" height="{wd*0.55}" fill="{DBASE}"/>'
             + dome(mcx, top, wd*1.0, wd*1.15)
-            + f'<rect x="{mcx-wd*0.95}" y="{top-3}" width="{wd*1.9}" height="{wd*0.5}" rx="2" fill="#F2E4C4"/>'
+            + f'<rect x="{mcx-wd*0.95}" y="{top-3}" width="{wd*1.9}" height="{wd*0.5}" rx="2" fill="{DLIT}"/>'
         )
 
     def y(v):  return horizon - v * M          # height above horizon, scaled
@@ -67,12 +68,12 @@ def vista():
     mos += minaret(cx+s(360), horizon, y(620), s(30))
     mos += minaret(cx-s(250), horizon, y(520), s(24))
     mos += minaret(cx+s(250), horizon, y(520), s(24))
-    mos += f'<rect x="{cx-s(235)}" y="{y(210)}" width="{s(470)}" height="{s(210)}" fill="#E3CDA2"/>'
-    mos += f'<path d="M{cx-s(248)},{y(210)} H{cx+s(248)} L{cx+s(218)},{y(262)} H{cx-s(218)} Z" fill="#EFE0BE"/>'
+    mos += f'<rect x="{cx-s(235)}" y="{y(210)}" width="{s(470)}" height="{s(210)}" fill="{DBASE}"/>'
+    mos += f'<path d="M{cx-s(248)},{y(210)} H{cx+s(248)} L{cx+s(218)},{y(262)} H{cx-s(218)} Z" fill="{DTIP}"/>'
     for i in range(-4, 5):
         ax = cx + i*s(54)
         mos += (f'<path d="M{ax-s(20)},{horizon} V{y(96)} A{s(20)},{s(26)} 0 0 1 {ax+s(20)},{y(96)} V{horizon} Z" '
-                f'fill="#C7AC7E" opacity=".55"/>')
+                f'fill="{DSHAD}" opacity=".45"/>')
     mos += dome(cx-s(192), y(210), s(86), s(74))
     mos += dome(cx+s(192), y(210), s(86), s(74))
     mos += dome(cx, y(244), s(168), s(150))
@@ -80,49 +81,48 @@ def vista():
     body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#C9BCA0"/><stop offset=".18" stop-color="#DCC28C"/>
-    <stop offset=".42" stop-color="#F0D194"/><stop offset=".6" stop-color="#FADFA4"/>
-    <stop offset=".7" stop-color="#FFECBA"/><stop offset=".72" stop-color="#FFF3D2"/>
+    <stop offset="0" stop-color="#E6DABE"/><stop offset=".26" stop-color="#F0E6CF"/>
+    <stop offset=".5" stop-color="#F6EEDC"/><stop offset=".66" stop-color="#FAF3E5"/>
+    <stop offset=".72" stop-color="#FDF9F0"/>
   </linearGradient>
-  <radialGradient id="sun" cx="50%" cy="{(horizon-30)/H*100:.0f}%" r="40%">
-    <stop offset="0" stop-color="#FFFCEF"/><stop offset=".12" stop-color="#FFF3D2"/>
-    <stop offset=".32" stop-color="rgba(255,228,168,.6)"/><stop offset=".66" stop-color="rgba(255,222,160,.14)"/>
-    <stop offset="1" stop-color="rgba(255,222,160,0)"/>
+  <radialGradient id="sun" cx="50%" cy="{(horizon-24)/H*100:.0f}%" r="30%">
+    <stop offset="0" stop-color="#FFFEF9"/><stop offset=".2" stop-color="rgba(255,251,238,.55)"/>
+    <stop offset=".55" stop-color="rgba(255,247,228,.12)"/><stop offset="1" stop-color="rgba(255,247,228,0)"/>
   </radialGradient>
   <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#F3D9A6"/><stop offset=".45" stop-color="#EACF9E"/>
-    <stop offset="1" stop-color="#E6D0AE"/>
+    <stop offset="0" stop-color="#F5EDDB"/><stop offset=".5" stop-color="#EFE4CE"/>
+    <stop offset="1" stop-color="#EBDFC7"/>
   </linearGradient>
   <linearGradient id="minG" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#C7AC7E"/><stop offset=".45" stop-color="#FBF0D6"/>
-    <stop offset="1" stop-color="#E3CDA2"/>
+    <stop offset="0" stop-color="{DSHAD}"/><stop offset=".45" stop-color="{DLIT}"/>
+    <stop offset="1" stop-color="{DBASE}"/>
   </linearGradient>
-  <filter id="soft"><feGaussianBlur stdDeviation="1.6"/></filter>
-  <filter id="softer"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="1.3"/></filter>
+  <filter id="softer"><feGaussianBlur stdDeviation="8"/></filter>
 </defs>
 
 <rect width="{W}" height="{H}" fill="url(#sky)"/>
-<g filter="url(#softer)" opacity=".65">
-  <ellipse cx="{W*0.28}" cy="{horizon-190}" rx="240" ry="24" fill="#FFF6E2"/>
-  <ellipse cx="{W*0.74}" cy="{horizon-120}" rx="280" ry="26" fill="#FFF2D6"/>
-  <ellipse cx="{W*0.52}" cy="{horizon-300}" rx="320" ry="26" fill="#FFF8EA"/>
+<g filter="url(#softer)" opacity=".55">
+  <ellipse cx="{W*0.28}" cy="{horizon-190}" rx="240" ry="22" fill="#FFFBF0"/>
+  <ellipse cx="{W*0.74}" cy="{horizon-120}" rx="280" ry="24" fill="#FEF8EC"/>
+  <ellipse cx="{W*0.52}" cy="{horizon-300}" rx="320" ry="24" fill="#FFFCF4"/>
 </g>
 <rect width="{W}" height="{H}" fill="url(#sun)"/>
 
 <rect x="0" y="{horizon}" width="{W}" height="{H-horizon}" fill="url(#pool)"/>
-<g transform="translate(0,{2*horizon}) scale(1,-1)" filter="url(#softer)" opacity=".4">{mos}</g>
+<g transform="translate(0,{2*horizon}) scale(1,-1)" filter="url(#softer)" opacity=".32">{mos}</g>
 <g filter="url(#soft)">{mos}</g>
-<g stroke="#FFF7E4" stroke-width="2.5" opacity=".5">
-  <line x1="0" y1="{horizon+50}" x2="{W}" y2="{horizon+50}"/>
-  <line x1="0" y1="{horizon+120}" x2="{W}" y2="{horizon+120}"/>
-  <line x1="0" y1="{horizon+210}" x2="{W}" y2="{horizon+210}"/>
-  <line x1="0" y1="{horizon+320}" x2="{W}" y2="{horizon+320}"/>
+<g stroke="#FFFBF0" stroke-width="2.5" opacity=".45">
+  <line x1="0" y1="{horizon+52}" x2="{W}" y2="{horizon+52}"/>
+  <line x1="0" y1="{horizon+128}" x2="{W}" y2="{horizon+128}"/>
+  <line x1="0" y1="{horizon+224}" x2="{W}" y2="{horizon+224}"/>
+  <line x1="0" y1="{horizon+340}" x2="{W}" y2="{horizon+340}"/>
 </g>
-<rect x="0" y="{horizon-18}" width="{W}" height="90" fill="url(#sun)" opacity=".4"/>
+<rect x="0" y="{horizon-16}" width="{W}" height="72" fill="url(#sun)" opacity=".35"/>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="rgba(240,222,190,0)"/><stop offset="1" stop-color="rgba(226,202,158,.72)"/>
+  <stop offset="0" stop-color="rgba(251,244,234,0)"/><stop offset="1" stop-color="rgba(251,244,234,.92)"/>
 </linearGradient>
-<rect x="0" y="{H*0.8}" width="{W}" height="{H*0.2}" fill="url(#fade)"/>
+<rect x="0" y="{H*0.74}" width="{W}" height="{H*0.26}" fill="url(#fade)"/>
 </svg>'''
     w("assets/hero-vista.svg", body)
 
@@ -182,10 +182,10 @@ def arch():
     # jali lattice tile — interlaced eight-point stars
     jali = ('<pattern id="jali" width="52" height="52" patternUnits="userSpaceOnUse">'
             f'<path d="M26 2 L34 18 L50 26 L34 34 L26 50 L18 34 L2 26 L18 18 Z" '
-            f'fill="none" stroke="{GOLD}" stroke-width="1.5" opacity=".55"/>'
+            f'fill="none" stroke="{GOLD}" stroke-width="1.3" opacity=".42"/>'
             f'<rect x="14" y="14" width="24" height="24" fill="none" stroke="{GOLD}" '
-            f'stroke-width="1.1" opacity=".4" transform="rotate(45 26 26)"/>'
-            f'<circle cx="26" cy="26" r="3" fill="{GOLD}" opacity=".4"/></pattern>')
+            f'stroke-width="1" opacity=".3" transform="rotate(45 26 26)"/>'
+            f'<circle cx="26" cy="26" r="2.6" fill="{GOLD}" opacity=".32"/></pattern>')
 
     def column(flip):
         tf = f'transform="translate({W},0) scale(-1,1)"' if flip else ''
@@ -215,10 +215,10 @@ def arch():
   </linearGradient>
   {jali}
   <filter id="cast" x="-30%" y="-30%" width="160%" height="160%">
-    <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#5e4320" flood-opacity="0.38"/>
+    <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#6e4c1e" flood-opacity="0.24"/>
   </filter>
   <filter id="innerdark" x="-20%" y="-20%" width="140%" height="140%">
-    <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#4a3416" flood-opacity="0.5"/>
+    <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#6e4c1e" flood-opacity="0.32"/>
   </filter>
   <mask id="cut">
     <rect width="{W}" height="{H}" fill="#fff"/>
@@ -234,20 +234,19 @@ def arch():
   <rect width="{W}" height="{H}" fill="url(#stone)" mask="url(#cut)"/>
   {column(False)}
   {column(True)}
-  <!-- a soft shadow just inside the opening lip, so it reads as a deep cut -->
-  <path d="{inner}" fill="none" stroke="#4a3416" stroke-width="20" opacity=".28" mask="url(#cut)" filter="url(#innerdark)"/>
-  <!-- carved concentric mouldings around the opening -->
-  <path d="{outer}" fill="none" stroke="{GOLD_D}" stroke-width="3" opacity=".7"/>
-  <path d="{mid}"   fill="none" stroke="url(#gold)" stroke-width="6"/>
-  <path d="{mid}"   fill="none" stroke="{IVORY_D}" stroke-width="2" opacity=".7"/>
-  <path d="{inner}" fill="none" stroke="url(#gold)" stroke-width="7"/>
-  <path d="{inner}" fill="none" stroke="{IVORY_L}" stroke-width="2" opacity=".9"/>
+  <!-- the faintest shadow just inside the opening lip -->
+  <path d="{inner}" fill="none" stroke="#6e4c1e" stroke-width="16" opacity=".16" mask="url(#cut)" filter="url(#innerdark)"/>
+  <!-- fine carved concentric mouldings around the opening -->
+  <path d="{outer}" fill="none" stroke="{GOLD_D}" stroke-width="2" opacity=".5"/>
+  <path d="{mid}"   fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+  <path d="{mid}"   fill="none" stroke="{IVORY_D}" stroke-width="1.4" opacity=".6"/>
+  <path d="{inner}" fill="none" stroke="url(#gold)" stroke-width="4.5"/>
+  <path d="{inner}" fill="none" stroke="{IVORY_L}" stroke-width="1.6" opacity=".95"/>
   <!-- keystone flourish at the apex -->
-  <circle cx="{cx}" cy="{apex+10}" r="11" fill="url(#gold)"/>
-  <path d="M{cx},{apex-10} l9,18 l-9,18 l-9,-18 Z" fill="url(#gold)"/>
-  <!-- corner rosettes in the spandrels -->
-  <g fill="url(#gold)" opacity=".8">
-   <circle cx="{colW+26}" cy="{apex+120}" r="5"/><circle cx="{W-colW-26}" cy="{apex+120}" r="5"/>
+  <circle cx="{cx}" cy="{apex+10}" r="9" fill="url(#gold)"/>
+  <path d="M{cx},{apex-9} l7,15 l-7,15 l-7,-15 Z" fill="url(#gold)"/>
+  <g fill="url(#gold)" opacity=".7">
+   <circle cx="{colW+26}" cy="{apex+120}" r="4"/><circle cx="{W-colW-26}" cy="{apex+120}" r="4"/>
   </g>
 </g>
 </svg>'''
@@ -255,94 +254,93 @@ def arch():
 
 
 # ══════════════════════════════════════════════════════════════════
-# 3. a lush cream-rose / peony corner cluster
+# 3. an all-flower corner cluster — cream roses, peonies, buds
 # ══════════════════════════════════════════════════════════════════
-def _rose(cx, cy, r, tint):
-    """An illustrated garden rose: a spiral of overlapping teardrop petals,
-    each shaded light at the rim and warm at the base."""
-    g = f'<ellipse cx="{cx:.1f}" cy="{cy+r*0.12:.1f}" rx="{r:.1f}" ry="{r*0.94:.1f}" fill="{tint}"/>'
-    petals = 13
-    for k in range(petals):
-        f = k / petals
-        ang = k * 137.5                       # golden-angle spiral
-        rad = r * (0.22 + 0.72 * f)
-        pr  = r * (0.30 + 0.42 * (1 - f))     # petal size shrinks outward a touch
-        a = math.radians(ang)
-        px, py = cx + math.cos(a) * rad * 0.55, cy + math.sin(a) * rad * 0.55
-        perp = a + math.pi / 2
-        wx, wy = math.cos(perp) * pr, math.sin(perp) * pr
-        tx, ty = cx + math.cos(a) * rad, cy + math.sin(a) * rad
-        g += (f'<path d="M{px:.1f},{py:.1f} '
-              f'C{px-wx*0.9:.1f},{py-wy*0.9:.1f} {tx-wx*0.7:.1f},{ty-wy*0.7:.1f} {tx:.1f},{ty:.1f} '
-              f'C{tx+wx*0.7:.1f},{ty+wy*0.7:.1f} {px+wx*0.9:.1f},{py+wy*0.9:.1f} {px:.1f},{py:.1f} Z" '
-              f'fill="url(#pet)"/>'
-              f'<path d="M{px:.1f},{py:.1f} '
-              f'C{px-wx*0.9:.1f},{py-wy*0.9:.1f} {tx-wx*0.7:.1f},{ty-wy*0.7:.1f} {tx:.1f},{ty:.1f}" '
-              f'fill="none" stroke="{tint}" stroke-width="1.1" stroke-opacity=".45"/>')
-    # tight bud at the centre
-    for k in range(4):
-        a = math.radians(k * 90 + 20)
-        g += (f'<path d="M{cx:.1f},{cy:.1f} q{math.cos(a)*r*0.28:.1f},{math.sin(a)*r*0.28:.1f} '
-              f'{math.cos(a)*r*0.05:.1f},{math.sin(a)*r*0.34:.1f} z" fill="url(#pet)"/>')
-    g += f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*0.1:.1f}" fill="#E7CDA6"/>'
+def _petal(px, py, tx, ty, wfrac):
+    """A single petal from base (px,py) to tip (tx,ty); wfrac = width/len."""
+    dx, dy = tx - px, ty - py
+    L = math.hypot(dx, dy) or 1
+    nx, ny = -dy / L, dx / L
+    w1 = L * wfrac
+    mx, my = (px + tx) / 2, (py + ty) / 2
+    return (f'<path d="M{px:.1f},{py:.1f} '
+            f'C{mx+nx*w1:.1f},{my+ny*w1:.1f} {tx+nx*w1*0.35:.1f},{ty+ny*w1*0.35:.1f} {tx:.1f},{ty:.1f} '
+            f'C{tx-nx*w1*0.35:.1f},{ty-ny*w1*0.35:.1f} {mx-nx*w1:.1f},{my-ny*w1:.1f} {px:.1f},{py:.1f} Z" '
+            f'fill="url(#pet)" stroke="#CBAE78" stroke-width="1.1" stroke-opacity=".6"/>')
+
+
+def _rose(cx, cy, r):
+    """A layered garden rose — a warm shaded heart wrapped in petal rings."""
+    g = f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*1.02:.1f}" fill="url(#core)"/>'
+    for rr, n, off, wf in [(1.0, 7, 0, .5), (0.72, 6, 26, .55), (0.46, 5, 14, .6), (0.24, 4, 30, .7)]:
+        for k in range(n):
+            a = math.radians(k * (360 / n) + off)
+            bx, by = cx + math.cos(a) * r * rr * 0.16, cy + math.sin(a) * r * rr * 0.16
+            tx, ty = cx + math.cos(a) * r * rr, cy + math.sin(a) * r * rr
+            g += _petal(bx, by, tx, ty, wf)
+    g += f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*0.13:.1f}" fill="#E2C99C"/>'
+    for k in range(5):
+        a = math.radians(k * 72 + 12)
+        g += f'<circle cx="{cx+math.cos(a)*r*0.1:.1f}" cy="{cy+math.sin(a)*r*0.1:.1f}" r="1.5" fill="{GOLD_L}" opacity=".8"/>'
     return f'<g>{g}</g>'
 
 
-def _leaf(cx, cy, ln, ang):
-    a = math.radians(ang)
-    tx, ty = cx + math.cos(a)*ln, cy + math.sin(a)*ln
-    nx, ny = -math.sin(a), math.cos(a)
-    return (f'<path d="M{cx:.1f},{cy:.1f} Q{cx+nx*ln*0.4:.1f},{cy+ny*ln*0.4:.1f} {tx:.1f},{ty:.1f} '
-            f'Q{cx-nx*ln*0.4:.1f},{cy-ny*ln*0.4:.1f} {cx:.1f},{cy:.1f} Z" fill="url(#leaf)" opacity=".9"/>')
+def _peony(cx, cy, r):
+    """A fuller, looser bloom — many soft ruffled petals."""
+    g = f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*1.02:.1f}" fill="url(#core)"/>'
+    for rr, n, off, wf in [(1.0, 11, 0, .42), (0.78, 9, 20, .48), (0.55, 7, 12, .55), (0.32, 5, 26, .66)]:
+        for k in range(n):
+            a = math.radians(k * (360 / n) + off)
+            bx, by = cx + math.cos(a) * r * rr * 0.2, cy + math.sin(a) * r * rr * 0.2
+            tx, ty = cx + math.cos(a) * r * rr, cy + math.sin(a) * r * rr
+            g += _petal(bx, by, tx, ty, wf)
+    g += f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*0.16:.1f}" fill="#E6CFA2"/>'
+    for k in range(8):
+        a = math.radians(k * 45)
+        g += f'<circle cx="{cx+math.cos(a)*r*0.16:.1f}" cy="{cy+math.sin(a)*r*0.16:.1f}" r="1.8" fill="{GOLD_L}" opacity=".7"/>'
+    return f'<g>{g}</g>'
 
 
-def _sprig(x, y, ln, ang, leaves=6):
-    a = math.radians(ang)
-    ex, ey = x + math.cos(a) * ln, y + math.sin(a) * ln
-    g = f'<path d="M{x:.1f},{y:.1f} Q{(x+ex)/2 - math.sin(a)*ln*0.2:.1f},{(y+ey)/2 + math.cos(a)*ln*0.2:.1f} {ex:.1f},{ey:.1f}" fill="none" stroke="url(#leaf)" stroke-width="2"/>'
-    for i in range(1, leaves + 1):
-        t = i / (leaves + 1)
-        lx, ly = x + (ex - x) * t, y + (ey - y) * t
-        for s in (1, -1):
-            la = a + s * 1.05
-            gx, gy = lx + math.cos(la) * ln * 0.16, ly + math.sin(la) * ln * 0.16
-            g += (f'<ellipse cx="{gx:.1f}" cy="{gy:.1f}" rx="{ln*0.11:.1f}" ry="{ln*0.05:.1f}" '
-                  f'transform="rotate({math.degrees(la):.0f} {gx:.1f} {gy:.1f})" fill="url(#leaf)" opacity=".9"/>')
-    return g
+def _blossom(cx, cy, r):
+    """A simple open five-petal blossom with a gold centre."""
+    g = ''
+    for k in range(5):
+        a = math.radians(k * 72 - 90)
+        tx, ty = cx + math.cos(a) * r, cy + math.sin(a) * r
+        g += _petal(cx, cy, tx, ty, .82)
+    g += f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r*0.24:.1f}" fill="#EBD3A6"/>'
+    for k in range(6):
+        a = math.radians(k * 60)
+        g += f'<circle cx="{cx+math.cos(a)*r*0.14:.1f}" cy="{cy+math.sin(a)*r*0.14:.1f}" r="1.7" fill="{GOLD}" opacity=".6"/>'
+    return f'<g>{g}</g>'
 
 
 def floral():
     W = H = 640
     els = []
-    # eucalyptus / greenery spilling out, behind the blooms
-    for (x, y, ln, an) in [(150,150,190,25),(70,240,210,60),(250,80,170,-8),
-                           (330,210,190,48),(110,110,150,-42),(210,300,160,88),
-                           (300,320,150,70),(360,120,140,15)]:
-        els.append(f'<g filter="url(#blur1)" opacity=".85">{_sprig(x,y,ln,an)}</g>')
-    # blooms, corner-weighted, well spread, varied sizes
-    blooms = [(140,140,88,"#E8CBA6"),(258,108,58,"#EAD9BE"),(96,262,78,"#E8CBA6"),
-              (290,262,54,"#EAD9BE"),(44,150,50,"#EAD9BE"),(196,220,58,"#E8CBA6"),
-              (350,180,44,"#EAD9BE"),(180,350,50,"#E8CBA6"),(388,270,38,"#EAD9BE"),
-              (300,60,34,"#EAD9BE"),(70,360,40,"#E8CBA6")]
-    for (x, y, r, t) in blooms:
-        els.append(f'<g filter="url(#blur0)">{_rose(x,y,r,t)}</g>')
-    # buds / ranunculus
-    for (x, y, r) in [(355,120,17),(88,340,19),(320,315,15),(385,210,13),(210,66,14),(60,255,15)]:
-        els.append(f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#pet)" stroke="{BLUSH}" stroke-width="1" stroke-opacity=".4"/>')
+    els.append(f'<g filter="url(#blur1)">{_peony(150,148,98)}</g>')
+    els.append(f'<g filter="url(#blur1)">{_rose(66,270,86)}</g>')
+    for (fn, x, y, r) in [(_rose,258,108,62),(_peony,286,258,66),(_rose,196,222,54),
+                          (_rose,50,146,48),(_rose,344,182,44),(_rose,182,348,52),
+                          (_blossom,352,262,34),(_blossom,300,54,30),(_blossom,392,210,26),
+                          (_blossom,60,356,32),(_blossom,214,60,26),(_blossom,120,110,24),
+                          (_blossom,332,322,24),(_rose,108,108,38)]:
+        els.append(f'<g filter="url(#blur0)">{fn(x,y,r)}</g>')
 
     body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">
 <defs>
-  <radialGradient id="pet" cx="36%" cy="30%" r="78%">
-    <stop offset="0" stop-color="#FFFBF0"/><stop offset=".32" stop-color="#F8EAD0"/>
-    <stop offset=".68" stop-color="#EAD3AC"/><stop offset="1" stop-color="#CDAF82"/>
+  <radialGradient id="pet" cx="34%" cy="26%" r="82%">
+    <stop offset="0" stop-color="#FFFEF9"/><stop offset=".3" stop-color="#F8EEDA"/>
+    <stop offset=".64" stop-color="#EBD8B4"/><stop offset="1" stop-color="#D6BC90"/>
   </radialGradient>
-  <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#CFD3B4"/><stop offset="1" stop-color="#9AA47B"/>
-  </linearGradient>
-  <filter id="blur0"><feGaussianBlur stdDeviation="0.4"/></filter>
-  <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+  <radialGradient id="core" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#CBAF80"/><stop offset=".65" stop-color="#E0CBA0"/>
+    <stop offset="1" stop-color="#ECDCBC"/>
+  </radialGradient>
+  <filter id="blur0"><feGaussianBlur stdDeviation="0.3"/></filter>
+  <filter id="blur1"><feGaussianBlur stdDeviation="0.5"/></filter>
   <filter id="drop" x="-40%" y="-40%" width="180%" height="180%">
-    <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#7a5a30" flood-opacity="0.3"/>
+    <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#6b4f2a" flood-opacity="0.24"/>
   </filter>
 </defs>
 <g filter="url(#drop)">{''.join(els)}</g>

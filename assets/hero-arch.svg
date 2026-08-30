@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1680" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="stone" x1="0" y1="0" x2="0.15" y2="1">
-    <stop offset="0" stop-color="#FFFBEF"/><stop offset=".45" stop-color="#F3E4C4"/>
-    <stop offset="1" stop-color="#D8BE93"/>
+    <stop offset="0" stop-color="#FEF9EE"/><stop offset=".45" stop-color="#F1E6D2"/>
+    <stop offset="1" stop-color="#DECBA6"/>
   </linearGradient>
   <linearGradient id="capG" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#D8BE93"/><stop offset=".5" stop-color="#FFFBEF"/>
-    <stop offset="1" stop-color="#D8BE93"/>
+    <stop offset="0" stop-color="#DECBA6"/><stop offset=".5" stop-color="#FEF9EE"/>
+    <stop offset="1" stop-color="#DECBA6"/>
   </linearGradient>
   <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#8A6524"/><stop offset=".5" stop-color="#F3DCA0"/>
-    <stop offset="1" stop-color="#8A6524"/>
+    <stop offset="0" stop-color="#573914"/><stop offset=".5" stop-color="#D9B87C"/>
+    <stop offset="1" stop-color="#573914"/>
   </linearGradient>
-  <pattern id="jali" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M26 2 L34 18 L50 26 L34 34 L26 50 L18 34 L2 26 L18 18 Z" fill="none" stroke="#C99A44" stroke-width="1.5" opacity=".55"/><rect x="14" y="14" width="24" height="24" fill="none" stroke="#C99A44" stroke-width="1.1" opacity=".4" transform="rotate(45 26 26)"/><circle cx="26" cy="26" r="3" fill="#C99A44" opacity=".4"/></pattern>
+  <pattern id="jali" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M26 2 L34 18 L50 26 L34 34 L26 50 L18 34 L2 26 L18 18 Z" fill="none" stroke="#946323" stroke-width="1.3" opacity=".42"/><rect x="14" y="14" width="24" height="24" fill="none" stroke="#946323" stroke-width="1" opacity=".3" transform="rotate(45 26 26)"/><circle cx="26" cy="26" r="2.6" fill="#946323" opacity=".32"/></pattern>
   <filter id="cast" x="-30%" y="-30%" width="160%" height="160%">
-    <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#5e4320" flood-opacity="0.38"/>
+    <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#6e4c1e" flood-opacity="0.24"/>
   </filter>
   <filter id="innerdark" x="-20%" y="-20%" width="140%" height="140%">
-    <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#4a3416" flood-opacity="0.5"/>
+    <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#6e4c1e" flood-opacity="0.32"/>
   </filter>
   <mask id="cut">
     <rect width="840" height="1680" fill="#fff"/>
@@ -49,20 +49,19 @@
       <rect x="-4" y="594.0" width="116" height="9" fill="url(#gold)"/>
       <path d="M-4,602.0 h116 l-16,-26 h-84 Z" fill="url(#stone)"/>
     </g>
-  <!-- a soft shadow just inside the opening lip, so it reads as a deep cut -->
-  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="#4a3416" stroke-width="20" opacity=".28" mask="url(#cut)" filter="url(#innerdark)"/>
-  <!-- carved concentric mouldings around the opening -->
-  <path d="M54.0,1680.0 L54.0,672.0 C54.0,366.2 310.2,178.1 420.0,84.0 C529.8,178.1 786.0,366.2 786.0,672.0 L786.0,1680.0 Z" fill="none" stroke="#8A6524" stroke-width="3" opacity=".7"/>
-  <path d="M84.0,1680.0 L84.0,672.0 C84.0,372.5 319.2,188.2 420.0,96.0 C520.8,188.2 756.0,372.5 756.0,672.0 L756.0,1680.0 Z"   fill="none" stroke="url(#gold)" stroke-width="6"/>
-  <path d="M84.0,1680.0 L84.0,672.0 C84.0,372.5 319.2,188.2 420.0,96.0 C520.8,188.2 756.0,372.5 756.0,672.0 L756.0,1680.0 Z"   fill="none" stroke="#D8BE93" stroke-width="2" opacity=".7"/>
-  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="url(#gold)" stroke-width="7"/>
-  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="#FFFBEF" stroke-width="2" opacity=".9"/>
+  <!-- the faintest shadow just inside the opening lip -->
+  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="#6e4c1e" stroke-width="16" opacity=".16" mask="url(#cut)" filter="url(#innerdark)"/>
+  <!-- fine carved concentric mouldings around the opening -->
+  <path d="M54.0,1680.0 L54.0,672.0 C54.0,366.2 310.2,178.1 420.0,84.0 C529.8,178.1 786.0,366.2 786.0,672.0 L786.0,1680.0 Z" fill="none" stroke="#573914" stroke-width="2" opacity=".5"/>
+  <path d="M84.0,1680.0 L84.0,672.0 C84.0,372.5 319.2,188.2 420.0,96.0 C520.8,188.2 756.0,372.5 756.0,672.0 L756.0,1680.0 Z"   fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+  <path d="M84.0,1680.0 L84.0,672.0 C84.0,372.5 319.2,188.2 420.0,96.0 C520.8,188.2 756.0,372.5 756.0,672.0 L756.0,1680.0 Z"   fill="none" stroke="#DECBA6" stroke-width="1.4" opacity=".6"/>
+  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="url(#gold)" stroke-width="4.5"/>
+  <path d="M104.0,1680.0 L104.0,672.0 A47.0,47.0 0 0 0 111.7,578.4 A44.0,44.0 0 0 0 133.0,492.9 A41.9,41.9 0 0 0 164.9,415.5 A40.1,40.1 0 0 0 204.6,345.8 A38.2,38.2 0 0 0 249.2,283.8 A35.9,35.9 0 0 0 295.9,229.2 A33.0,33.0 0 0 0 341.9,181.8 A29.2,29.2 0 0 0 384.2,141.5 A24.5,24.5 0 0 0 420.0,108.0 A24.5,24.5 0 0 0 455.8,141.5 A29.2,29.2 0 0 0 498.1,181.8 A33.0,33.0 0 0 0 544.1,229.2 A35.9,35.9 0 0 0 590.8,283.8 A38.2,38.2 0 0 0 635.4,345.8 A40.1,40.1 0 0 0 675.1,415.5 A41.9,41.9 0 0 0 707.0,492.9 A44.0,44.0 0 0 0 728.3,578.4 A47.0,47.0 0 0 0 736.0,672.0 L736.0,1680.0 Z" fill="none" stroke="#FEF9EE" stroke-width="1.6" opacity=".95"/>
   <!-- keystone flourish at the apex -->
-  <circle cx="420.0" cy="94.0" r="11" fill="url(#gold)"/>
-  <path d="M420.0,74.0 l9,18 l-9,18 l-9,-18 Z" fill="url(#gold)"/>
-  <!-- corner rosettes in the spandrels -->
-  <g fill="url(#gold)" opacity=".8">
-   <circle cx="134" cy="204.0" r="5"/><circle cx="706" cy="204.0" r="5"/>
+  <circle cx="420.0" cy="94.0" r="9" fill="url(#gold)"/>
+  <path d="M420.0,75.0 l7,15 l-7,15 l-7,-15 Z" fill="url(#gold)"/>
+  <g fill="url(#gold)" opacity=".7">
+   <circle cx="134" cy="204.0" r="4"/><circle cx="706" cy="204.0" r="4"/>
   </g>
 </g>
 </svg>

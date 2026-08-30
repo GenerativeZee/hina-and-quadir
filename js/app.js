@@ -453,22 +453,26 @@
         pGarland = $('.hero__plane--garland');
 
     // tx/ty = where we want to be (-1..1); cx/cy = eased current
-    var tx = 0, ty = 0, cx = 0, cy = 0, sc = 0, running = false, idle = 0;
+    var tx = 0, ty = 0, cx = 0, cy = 0, sc = 0, lastSc = -1, running = false, idle = 0;
 
     function apply() {
       // far things move against the pointer, near things with it
       depth.style.transform =
         'rotateX(' + (cy * -4.5).toFixed(2) + 'deg) rotateY(' + (cx * 6).toFixed(2) + 'deg)';
       if (pScene) pScene.style.transform =
-        'translate3d(' + (cx * -14).toFixed(1) + 'px,' + (sc * .22 + cy * -11).toFixed(1) + 'px,0) translateZ(-170px) scale(1.28)';
+        'translate3d(' + (cx * -14).toFixed(1) + 'px,' + (sc * .20 + cy * -11).toFixed(1) + 'px,0) translateZ(-140px) scale(1.08)';
       if (pArch) pArch.style.transform =
-        'translate3d(' + (cx * -7).toFixed(1) + 'px,' + (sc * .10 + cy * -6).toFixed(1) + 'px,0) translateZ(-55px)';
+        'translate3d(' + (cx * -7).toFixed(1) + 'px,' + (sc * .09 + cy * -6).toFixed(1) + 'px,0) translateZ(-30px)';
       if (pCorners) pCorners.style.transform =
-        'translate3d(' + (cx * 13).toFixed(1) + 'px,' + (sc * .05 + cy * 9).toFixed(1) + 'px,0) translateZ(24px)';
+        'translate3d(' + (cx * 13).toFixed(1) + 'px,' + (sc * .045 + cy * 9).toFixed(1) + 'px,0) translateZ(84px)';
       if (pLant) pLant.style.transform =
-        'translate3d(' + (cx * 22).toFixed(1) + 'px,' + (sc * -.02 + cy * 15).toFixed(1) + 'px,0) translateZ(70px)';
-      if (pGarland) pGarland.style.transform =
-        'translate3d(' + (cx * 30).toFixed(1) + 'px,' + (sc * -.06 + cy * 21).toFixed(1) + 'px,0) translateZ(105px)';
+        'translate3d(' + (cx * 22).toFixed(1) + 'px,' + (sc * -.02 + cy * 15).toFixed(1) + 'px,0) translateZ(46px)';
+
+      // as the hero scrolls away, dissolve the frame into the next section
+      var hh = hero.offsetHeight || 1;
+      var ex = Math.max(0, Math.min(1, sc / (hh * 0.72)));
+      depth.style.opacity = (1 - ex).toFixed(3);
+      var txt = $('.hero__text'); if (txt) txt.style.opacity = (1 - Math.min(1, ex * 1.5)).toFixed(3);
     }
 
     function loop() {
@@ -478,7 +482,8 @@
       cx += (tx - cx) * .08;
       cy += (ty - cy) * .08;
       apply();
-      var moving = Math.abs(tx - cx) + Math.abs(ty - cy) > .001;
+      var moving = Math.abs(tx - cx) + Math.abs(ty - cy) > .001 || sc !== lastSc;
+      lastSc = sc;
       if (moving) { idle = 0; }
       else if (++idle > 30) { running = false; return; }
       requestAnimationFrame(loop);
