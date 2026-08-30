@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F1E2D4">
+<title>Nikkah Invitation</title>
+<link rel="preload" as="image" href="assets/envelope-emboss.svg">
+<link rel="preload" as="image" href="assets/seal.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════ PRELOADER ═══════════════════════ -->
+<div class="boot" id="boot">
+  <div class="boot__inner">
+    <span class="boot__mono" data-fill="monogram"></span>
+    <span class="boot__bar"><i id="bootBar"></i></span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════ THE ENVELOPE ══════════════════════ -->
+<section class="env" id="env">
+  <div class="env__room">
+    <div class="env__stage">
+      <div class="env__scene" id="envScene">
+
+        <div class="env__back"></div>
+
+        <!-- warm light spilling out from inside the envelope -->
+        <div class="env__glow"></div>
+
+        <!-- the card that is revealed -->
+        <div class="env__card" id="envCard">
+          <span class="env__card-frame"></span>
+          <img class="env__card-spray env__card-spray--tl" src="assets/corner-spray.svg" alt="">
+          <img class="env__card-spray env__card-spray--br" src="assets/corner-spray-flip.svg" alt="">
+          <div class="env__card-face">
+            <span class="env__card-rule"></span>
+            <span class="env__card-mono gold-text" data-fill="monogram"></span>
+            <span class="env__card-teaser" data-fill="cardTeaser"></span>
+            <img class="env__card-orn" src="assets/divider.svg" alt="">
+          </div>
+          <div class="env__card-sheen"></div>
+        </div>
+
+        <!-- the four folded flaps -->
+        <div class="env__flap env__flap--left"></div>
+        <div class="env__flap env__flap--right"></div>
+        <div class="env__flap env__flap--bottom"></div>
+        <div class="env__flap env__flap--top" id="envFlap"></div>
+
+        <!-- specular sweep travelling across the embossed paper -->
+        <div class="env__sheen"></div>
+
+        <!-- wax seal, in two halves so it can break -->
+        <button class="seal" id="seal" type="button" aria-label="Open the invitation">
+          <span class="seal__halo"></span>
+          <span class="seal__half seal__half--l">
+            <img src="assets/seal.svg" alt="">
+            <span class="seal__mono" data-fill="monogram"></span>
+          </span>
+          <span class="seal__half seal__half--r">
+            <img src="assets/seal.svg" alt="">
+            <span class="seal__mono" data-fill="monogram"></span>
+          </span>
+          <span class="seal__gleam"></span>
+        </button>
+
+        <div class="env__burst" id="burst"></div>
+
+        <p class="env__hint" id="envHint">
+          <span class="env__hint-line"></span>
+          <span data-fill="openHint"></span>
+          <span class="env__hint-line"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="env__vignette"></div>
+</section>
+
+
+<!-- ═════════════════════ THE INVITATION ═════════════════════ -->
+<main class="invite" id="invite" aria-hidden="true">
+
+  <!-- ── hero ── -->
+  <section class="hero" id="hero">
+    <div class="hero__depth" id="heroDepth">
+      <div class="hero__scene" id="heroScene">
+        <img class="hero__art" src="assets/hero-scene.svg" alt="">
+        <div class="hero__wash"></div>
+        <div class="hero__rays"></div>
+      </div>
+
+      <svg class="hero__arch" viewBox="0 0 400 640" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="archGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="640">
+            <stop offset="0" stop-color="#D8B476"/><stop offset=".4" stop-color="#B4884A"/>
+            <stop offset=".7" stop-color="#EDD5A4"/><stop offset="1" stop-color="#A2763E"/>
+          </linearGradient>
+        </defs>
+        <path id="archPath" fill="none" stroke="url(#archGold)" stroke-width="1.6"
+              vector-effect="non-scaling-stroke"/>
+        <path id="archPath2" fill="none" stroke="url(#archGold)" stroke-width="1"
+              opacity=".55" vector-effect="non-scaling-stroke"/>
+      </svg>
+
+      <img class="hero__lantern hero__lantern--l" src="assets/lantern.svg" alt="">
+      <img class="hero__lantern hero__lantern--r" src="assets/lantern.svg" alt="">
+      <img class="hero__corner hero__corner--l" src="assets/corner-spray.svg" alt="">
+      <img class="hero__corner hero__corner--r" src="assets/corner-spray-flip.svg" alt="">
+    </div>
+
+    <div class="hero__text">
+      <p class="hero__welcome hl" data-fill="welcome"></p>
+      <h1 class="hero__ceremony gold-text hl" data-fill="ceremony"></h1>
+      <p class="hero__joiner hl" data-fill="joiner"></p>
+      <img class="hero__crest hl" src="assets/crest.svg" alt="">
+      <p class="hero__couple gold-text hl" data-fill="couple"></p>
+    </div>
+
+    <div class="hero__cue">
+      <span data-fill="scrollCue"></span>
+      <svg viewBox="0 0 24 14" aria-hidden="true"><path d="M2 2 L12 11 L22 2" fill="none"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </div>
+  </section>
+
+
+  <!-- ── the date ── -->
+  <section class="sec sec--date" id="dateSec">
+    <div class="sec__inner">
+      <h2 class="script-h gold-text reveal">The Date</h2>
+      <p class="eyebrow reveal" id="scratchLabel">
+        <span class="spark">&#10022;</span>
+        <span data-fill="date.scratchLabel"></span>
+        <span class="spark">&#10022;</span>
+      </p>
+
+      <div class="cards" id="cards" data-stagger>
+        <div class="card reveal reveal--scale" data-key="day">
+          <div class="card__face"><span class="card__value gold-text"></span></div>
+          <canvas class="card__foil"></canvas>
+          <span class="card__label">Day</span>
+        </div>
+        <div class="card reveal reveal--scale" data-key="month">
+          <div class="card__face"><span class="card__value gold-text"></span></div>
+          <canvas class="card__foil"></canvas>
+          <span class="card__label">Month</span>
+        </div>
+        <div class="card reveal reveal--scale" data-key="year">
+          <div class="card__face"><span class="card__value gold-text"></span></div>
+          <canvas class="card__foil"></canvas>
+          <span class="card__label">Year</span>
+        </div>
+      </div>
+
+      <p class="date__done" id="dateDone">
+        <span class="date__weekday gold-text"></span>
+        <span class="date__note" data-fill="date.revealedNote"></span>
+      </p>
+      <button class="linkbtn" id="revealAll" type="button" hidden>Reveal all</button>
+
+      <img class="divider reveal" src="assets/divider.svg" alt="">
+    </div>
+  </section>
+
+
+  <!-- ── the families ── -->
+  <section class="sec sec--names">
+    <div class="sec__inner">
+      <div class="person reveal" data-stagger>
+        <h3 class="person__name gold-text" data-fill="groom.name"></h3>
+        <p class="person__rel"  data-fill="groom.relation"></p>
+        <p class="person__par"  data-fill="groom.parents"></p>
+      </div>
+
+      <div class="amp reveal reveal--scale">
+        <img src="assets/arch-ornament.svg" alt="">
+      </div>
+
+      <div class="person reveal" data-stagger>
+        <h3 class="person__name gold-text" data-fill="bride.name"></h3>
+        <p class="person__rel"  data-fill="bride.relation"></p>
+        <p class="person__par"  data-fill="bride.parents"></p>
+      </div>
+
+      <div class="letter reveal" data-stagger>
+        <h2 class="script-h script-h--sm gold-text" data-fill="letterTitle"></h2>
+        <p class="letter__body" data-fill="letterBody"></p>
+      </div>
+
+      <img class="divider reveal" src="assets/divider.svg" alt="">
+    </div>
+  </section>
+
+
+  <!-- ── timeline ── -->
+  <section class="sec sec--timeline">
+    <div class="sec__inner">
+      <h2 class="script-h gold-text reveal" data-fill="timelineTitle"></h2>
+      <ol class="tl" id="tl"><span class="tl__rail" id="tlRail"></span></ol>
+    </div>
+  </section>
+
+
+  <!-- ── venue ── -->
+  <section class="sec sec--venue">
+    <div class="sec__inner">
+      <h2 class="script-h gold-text reveal" data-fill="venue.title"></h2>
+      <div class="venue reveal" data-stagger>
+        <img class="venue__arch" src="assets/arch-ornament.svg" alt="">
+        <p class="venue__name" data-fill="venue.name"></p>
+        <p class="venue__addr" data-fill="venue.address"></p>
+        <a class="btn" id="mapsBtn" target="_blank" rel="noopener">
+          <span data-fill="venue.mapsLabel"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── closing ── -->
+  <section class="sec sec--closing">
+    <img class="closing__corner closing__corner--l" src="assets/corner-spray.svg" alt="">
+    <img class="closing__corner closing__corner--r" src="assets/corner-spray-flip.svg" alt="">
+    <div class="sec__inner" data-stagger>
+      <img class="crest reveal reveal--scale" src="assets/crest.svg" alt="">
+      <p class="closing__line reveal" data-fill="closing.line1"></p>
+      <p class="closing__line reveal" data-fill="closing.line2"></p>
+      <p class="closing__sign gold-text reveal" data-fill="closing.signoff"></p>
+      <p class="closing__date reveal" id="closingDate"></p>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ═══════════════════════ ATMOSPHERE ═══════════════════════ -->
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="page-vignette" aria-hidden="true"></div>
+
+<button class="music" id="music" type="button" aria-label="Toggle music" hidden>
+  <span class="music__ring"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path class="music__note" d="M9 18V6l10-2v12" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="music__note" cx="7" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle class="music__note" cx="17" cy="16" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path class="music__mute" d="M4 4 L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<audio id="audio" loop preload="auto"></audio>
+
+<script src="details.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
