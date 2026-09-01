@@ -584,13 +584,10 @@ body::after{
 
 /* ── hero — a soft ivory vista framed by a carved arch ── */
 .hero{
-  position:relative;
-  height:100svh;min-height:600px;
+  position:relative;display:block;
+  height:100vh;height:100svh;min-height:480px;
   overflow:hidden;
-  display:flex;flex-direction:column;justify-content:flex-start;
   background:linear-gradient(180deg,#EFE4CE 0%,#F4ECDA 42%,#F9F1E3 74%,var(--ivory) 100%);
-  perspective:1100px;
-  perspective-origin:50% 42%;
 }
 /* dissolve the base of the hero into the first section for a seamless scroll */
 .hero::after{
@@ -598,106 +595,80 @@ body::after{
   pointer-events:none;
   background:linear-gradient(180deg,rgba(251,244,234,0) 0%,rgba(251,244,234,.65) 58%,var(--ivory) 100%);
 }
+/* every decorative layer is a direct child of .hero__depth, positioned
+   with plain % — no 3-D planes, so it behaves the same on every screen */
 .hero__depth{
   position:absolute;inset:0;z-index:0;
-  transform-style:preserve-3d;
-  transition:transform .55s cubic-bezier(.22,.68,.24,1);
-  will-change:transform;
+  transition:opacity .4s ease;
+  will-change:transform,opacity;
 }
-.hero__plane{
-  position:absolute;inset:0;
-  transform-style:preserve-3d;
-  will-change:transform;
-  backface-visibility:hidden;
-}
-/* resting depth — app.js adds parallax drift + bank on top */
-.hero__plane--scene   {transform:translateZ(-140px) scale(1.08)}
-.hero__plane--arch    {transform:translateZ(-30px)}
-.hero__plane--lanterns{transform:translateZ(46px)}
-.hero__plane--corners {transform:translateZ(84px)}
+.hero__depth > *{position:absolute}
 
-/* far: the vista */
-.hero__scene{
-  position:absolute;inset:-4% -6%;will-change:transform,filter;
-  opacity:0;transform:scale(1.12);
+/* the far vista */
+.hero__art{
+  inset:-3%;width:106%;height:106%;object-fit:cover;object-position:50% 48%;
+  z-index:1;display:block;
+  opacity:0;transform:scale(1.1);
   transition:opacity 2.2s ease,transform 3s var(--ease-silk),filter 2s ease;
 }
-.hero.lit .hero__scene{
-  opacity:1;transform:scale(1);
-  filter:blur(.3px) saturate(1.03);
+.hero.lit .hero__art{
+  opacity:1;transform:scale(1);filter:blur(.3px) saturate(1.03);
   animation:heroDrift 32s ease-in-out 3s infinite alternate;
 }
-@keyframes heroDrift{from{transform:scale(1)}to{transform:scale(1.06) translateY(-1.2%)}}
-.hero__art{width:100%;height:100%;object-fit:cover;object-position:50% 48%;display:block}
+@keyframes heroDrift{from{transform:scale(1)}to{transform:scale(1.05) translateY(-1.2%)}}
 
-/* the faintest breath of warm light on the horizon */
-.hero__bloom{
-  position:absolute;left:50%;top:72%;width:70%;aspect-ratio:1.6;
-  transform:translate(-50%,-50%) translateZ(-130px);
-  pointer-events:none;mix-blend-mode:screen;opacity:0;
-  background:radial-gradient(ellipse at 50% 50%,
-     rgba(255,251,238,.4) 0%,rgba(255,246,228,.1) 36%,transparent 66%);
-  transition:opacity 2.6s ease .5s;
-}
-.hero.lit .hero__bloom{opacity:1;animation:bloomBreathe 13s ease-in-out 3s infinite}
-@keyframes bloomBreathe{0%,100%{opacity:.6}50%{opacity:.85}}
-
-/* a soft pool of light behind the title — nothing dark, ever */
+/* a soft pool of light behind the title */
 .hero__haze{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  transform:translateZ(-24px);
+  inset:0;z-index:2;pointer-events:none;
   background:radial-gradient(48% 26% at 50% 22%,rgba(255,252,244,.6),transparent 74%);
   opacity:0;transition:opacity 2.4s ease .6s;
 }
 .hero.lit .hero__haze{opacity:1}
 
-/* mid: the carved ivory arch frame */
+/* the carved ivory arch frame */
 .hero__archimg{
-  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+  inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:3;
   opacity:0;transform:scale(1.03);
   transition:opacity 2s ease .3s,transform 2.4s var(--ease-silk) .3s;
-  filter:drop-shadow(0 18px 36px rgba(110,76,30,.24)) drop-shadow(0 3px 8px rgba(110,76,30,.18));
+  filter:drop-shadow(0 18px 34px rgba(110,76,30,.22));
 }
 .hero.lit .hero__archimg{opacity:1;transform:none}
 
-/* near: hanging lanterns inside the arch */
+/* hanging jhoomar — two per side, clear of the arch columns */
 .hero__lantern{
-  position:absolute;width:min(15vw,62px);
-  transform-origin:50% 3%;
-  opacity:0;
-  filter:drop-shadow(0 6px 16px rgba(110,72,26,.45));
+  z-index:4;width:min(15vw,58px);
+  transform-origin:50% 3%;opacity:0;
+  filter:drop-shadow(0 6px 15px rgba(110,72,26,.45));
   transition:opacity 1.4s ease 1s;
 }
 .hero.lit .hero__lantern{opacity:1;animation:sway 7s ease-in-out 1.4s infinite}
-.hero__lantern--l1{left:3%;  top:19%}
-.hero__lantern--l2{left:-1%; top:30%; width:min(13vw,54px); animation-delay:-2.4s!important}
-.hero__lantern--l3{left:6%;  top:39%; width:min(11vw,46px); animation-delay:-4.1s!important}
-.hero__lantern--r1{right:3%;  top:19%; animation-delay:-1.2s!important}
-.hero__lantern--r2{right:-1%; top:30%; width:min(13vw,54px); animation-delay:-3.6s!important}
-.hero__lantern--r3{right:6%;  top:39%; width:min(11vw,46px); animation-delay:-5.5s!important}
+/* positioned left-only (percent + own width) so both sides render identically */
+.hero__lantern--l1{left:8%;  top:20%}
+.hero__lantern--l2{left:13%; top:33%; width:min(12vw,48px); animation-delay:-3s!important}
+.hero__lantern--r1{left:calc(92% - min(15vw,58px)); top:20%; animation-delay:-1.4s!important}
+.hero__lantern--r2{left:calc(87% - min(12vw,48px)); top:33%; width:min(12vw,48px); animation-delay:-4.6s!important}
 @keyframes sway{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
 
-/* nearest: florals bleeding in from all four corners */
+/* florals framing each corner — one centred cluster, mirrored 4 ways */
 .hero__flora{
-  position:absolute;width:min(88vw,430px);
+  z-index:5;width:min(52vw,230px);
   opacity:0;
-  filter:drop-shadow(0 16px 30px rgba(96,64,32,.28)) saturate(1.04) contrast(1.03);
-  transition:opacity 1.6s ease .5s,transform 1.8s var(--ease-lift) .5s;
+  filter:drop-shadow(0 12px 22px rgba(96,64,32,.24)) saturate(1.03);
+  transition:opacity 1.6s ease .5s;
 }
-.hero__flora--tl{left:-22%;top:-17%;transform:translate(-14px,-14px)}
-.hero__flora--tr{right:-22%;top:-17%;transform:translate(14px,-14px) scaleX(-1)}
-.hero__flora--bl{left:-24%;bottom:-19%;transform:translate(-14px,14px) scaleY(-1)}
-.hero__flora--br{right:-24%;bottom:-19%;transform:translate(14px,14px) scale(-1)}
-.hero.lit .hero__flora{opacity:1;transform:none}
-.hero.lit .hero__flora--tr{transform:scaleX(-1)}
-.hero.lit .hero__flora--bl{transform:scaleY(-1)}
-.hero.lit .hero__flora--br{transform:scale(-1)}
+.hero__flora--tl{left:-9%; top:-8%}
+.hero__flora--tr{left:calc(109% - min(52vw,230px)); top:-8%; transform:scaleX(-1)}
+.hero__flora--bl{left:-9%; bottom:-9%; transform:scaleY(-1)}
+.hero__flora--br{left:calc(109% - min(52vw,230px)); bottom:-9%; transform:scale(-1)}
+.hero.lit .hero__flora{opacity:1}
 
 /* ── the title, centred within the arch opening ── */
 .hero__text{
-  position:relative;z-index:6;text-align:center;
-  width:min(70%,320px);margin:auto;
-  padding:0 6px;
+  position:absolute;left:50%;top:47%;
+  transform:translate(-50%,-50%);
+  z-index:6;text-align:center;
+  width:min(78%,320px);
+  padding:0 4px;
 }
 .hl{
   opacity:0;transform:translateY(20px);filter:blur(5px);
@@ -730,7 +701,7 @@ body::after{
 .hero__joiner-rule:last-child::after{right:auto;left:-3px}
 .hero__couple{
   font-family:var(--script);
-  font-size:clamp(40px,15vw,72px);line-height:1;
+  font-size:clamp(38px,14vw,68px);line-height:1.08;
   margin:8px 0 0;
   filter:drop-shadow(0 3px 20px rgba(148,99,35,.32));
 }
@@ -981,15 +952,38 @@ body::after{
 .music.playing .music__ring{opacity:1;animation:spin 3.4s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* shorter phones: pull the hero type in so it clears the couple */
-@media (max-height:720px){
-  .hero__text{margin-top:13vh}
-  .hero__welcome{font-size:21px}
-  .hero__joiner{font-size:15px;margin-top:10px}
-  .hero__lantern{top:96px;width:40px}
+/* shorter phones: scale the hero type down so the centred block still fits */
+@media (max-height:740px){
+  .hero__welcome{font-size:clamp(21px,6vw,27px)}
+  .hero__ceremony{font-size:clamp(28px,7.6vw,37px)}
+  .hero__joiner{font-size:15px;margin:2px 0}
+  .hero__couple{font-size:clamp(36px,13vw,58px)}
+  .hero__lantern--l1,.hero__lantern--r1{top:15%}
+  .hero__lantern--l2,.hero__lantern--r2{top:26%}
+  .hero__lantern--l3,.hero__lantern--r3{top:35%}
 }
-@media (max-height:620px){
-  .hero__text{margin-top:10vh}
+@media (max-height:600px){
+  .hero__text{margin-bottom:1.5vh}
+  .hero__welcome{font-size:19px;margin-bottom:2px}
+  .hero__ceremony{font-size:25px}
+  .hero__couple{font-size:30px}
+  .hero__joiner{font-size:13px}
+}
+
+/* narrow phones */
+@media (max-width:400px){
+  .sec__inner{padding:0 22px}
+  .hero__text{width:min(84%,300px)}
+  .hero__ceremony{font-size:clamp(26px,7.4vw,32px)}
+  .hero__couple{font-size:clamp(34px,12vw,44px)}
+  .hero__lantern--l1{left:5%}
+  .hero__lantern--l2{left:9%}
+  .hero__lantern--r1{left:calc(95% - min(15vw,58px))}
+  .hero__lantern--r2{left:calc(91% - min(12vw,48px))}
+}
+@media (max-width:340px){
+  .hero__ceremony{font-size:24px}
+  .hero__couple{font-size:30px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -999,14 +993,13 @@ body::after{
   .invite{filter:none;transform:none}
   .tl__rail{transform:translateX(-.5px) scaleY(1)}
   .tl__node{transform:rotate(45deg) scale(1)}
-  .hero__scene,.hero__cue{opacity:1}
-  .hero__scene{transform:none!important;animation:none!important}
-  .hero__archimg,.hero__lantern,.hero__flora,.hero__bloom,.hero__haze{opacity:1!important}
-  .hero__flora{transform:none!important}
+  .hero__cue{opacity:1}
+  .hero__art{transform:none!important;animation:none!important;opacity:1!important}
+  .hero__archimg,.hero__lantern,.hero__flora,.hero__haze{opacity:1!important}
   .hero__flora--tr{transform:scaleX(-1)!important}
   .hero__flora--bl{transform:scaleY(-1)!important}
   .hero__flora--br{transform:scale(-1)!important}
-  .hero__depth{transform:none!important}
+  .hero__depth{transform:none!important;opacity:1!important}
   .garland{opacity:.9!important}
   .card{transform:none!important}
 }

@@ -435,37 +435,23 @@
       }
     }
 
-    /* hero: a small room seen through the frame — every plane sits at its
-       own depth, and the whole room banks toward the pointer / phone tilt */
+    /* hero: the framed scene drifts a few px toward the pointer / phone
+       tilt, and dissolves as the page scrolls past it */
     var hero  = $('#hero'),
         depth = $('#heroDepth'),
-        pScene   = $('.hero__plane--scene'),
-        pArch    = $('.hero__plane--arch'),
-        pCorners = $('.hero__plane--corners'),
-        pLant    = $('.hero__plane--lanterns'),
-        pGarland = $('.hero__plane--garland');
+        htxt  = $('.hero__text');
 
-    // tx/ty = where we want to be (-1..1); cx/cy = eased current
     var tx = 0, ty = 0, cx = 0, cy = 0, sc = 0, lastSc = -1, running = false, idle = 0;
 
     function apply() {
-      // far things move against the pointer, near things with it
       depth.style.transform =
-        'rotateX(' + (cy * -4.5).toFixed(2) + 'deg) rotateY(' + (cx * 6).toFixed(2) + 'deg)';
-      if (pScene) pScene.style.transform =
-        'translate3d(' + (cx * -14).toFixed(1) + 'px,' + (sc * .20 + cy * -11).toFixed(1) + 'px,0) translateZ(-140px) scale(1.08)';
-      if (pArch) pArch.style.transform =
-        'translate3d(' + (cx * -7).toFixed(1) + 'px,' + (sc * .09 + cy * -6).toFixed(1) + 'px,0) translateZ(-30px)';
-      if (pCorners) pCorners.style.transform =
-        'translate3d(' + (cx * 13).toFixed(1) + 'px,' + (sc * .045 + cy * 9).toFixed(1) + 'px,0) translateZ(84px)';
-      if (pLant) pLant.style.transform =
-        'translate3d(' + (cx * 22).toFixed(1) + 'px,' + (sc * -.02 + cy * 15).toFixed(1) + 'px,0) translateZ(46px)';
+        'translate(' + (cx * 5).toFixed(1) + 'px,' + (sc * .12 + cy * 4).toFixed(1) + 'px)';
 
       // as the hero scrolls away, dissolve the frame into the next section
       var hh = hero.offsetHeight || 1;
       var ex = Math.max(0, Math.min(1, sc / (hh * 0.72)));
       depth.style.opacity = (1 - ex).toFixed(3);
-      var txt = $('.hero__text'); if (txt) txt.style.opacity = (1 - Math.min(1, ex * 1.5)).toFixed(3);
+      if (htxt) htxt.style.opacity = (1 - Math.min(1, ex * 1.5)).toFixed(3);
     }
 
     function loop() {
@@ -543,10 +529,10 @@
       '#boot{display:none!important}' +
       '.env{display:none!important}' +
       '.invite{opacity:1!important;transform:none!important;filter:none!important}' +
-      '.hero{height:640px!important;perspective:none!important}' +
-      '.hero__depth,.hero__plane{transform:none!important;transform-style:flat!important}' +
-      '.hero__scene{animation:none!important;transform:none!important;opacity:1!important}' +
-      '.hero__archimg,.hero__lantern,.hero__flora,.hero__bloom,.hero__haze{opacity:1!important;transform:none!important}' +
+      '.hero{height:640px!important}' +
+      '.hero__depth{transform:none!important;opacity:1!important}' +
+      '.hero__art{animation:none!important;transform:none!important;opacity:1!important}' +
+      '.hero__archimg,.hero__lantern,.hero__flora,.hero__haze{opacity:1!important;transform:none!important}' +
       '.hero__flora--tr{transform:scaleX(-1)!important}.hero__flora--bl{transform:scaleY(-1)!important}.hero__flora--br{transform:scale(-1)!important}' +
       '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
       '.date__done{opacity:1!important;transform:none!important}' +

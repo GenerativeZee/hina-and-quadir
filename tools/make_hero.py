@@ -30,7 +30,7 @@ def w(path, s):
 def vista():
     W, H = 1000, 1560
     cx, glowY = W / 2, H * 0.6
-    body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
+    body = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#E7DBC0"/><stop offset=".3" stop-color="#F1E7D1"/>
@@ -130,7 +130,7 @@ def arch():
       <path d="M-4,{spring-70} h{colW+8} l-16,-26 h-{colW-24} Z" fill="url(#stone)"/>
     </g>'''
 
-    body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
+    body = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="stone" x1="0" y1="0" x2="0.15" y2="1">
     <stop offset="0" stop-color="{IVORY_L}"/><stop offset=".45" stop-color="{IVORY}"/>
@@ -247,18 +247,22 @@ def _blossom(cx, cy, r):
 
 
 def floral():
-    W = H = 640
+    # a compact, roughly round cluster centred in the canvas, so it reads
+    # the same when mirrored into any of the four corners.
+    W = H = 520
+    c = W / 2
     els = []
-    els.append(f'<g filter="url(#blur1)">{_peony(150,148,98)}</g>')
-    els.append(f'<g filter="url(#blur1)">{_rose(66,270,86)}</g>')
-    for (fn, x, y, r) in [(_rose,258,108,62),(_peony,286,258,66),(_rose,196,222,54),
-                          (_rose,50,146,48),(_rose,344,182,44),(_rose,182,348,52),
-                          (_blossom,352,262,34),(_blossom,300,54,30),(_blossom,392,210,26),
-                          (_blossom,60,356,32),(_blossom,214,60,26),(_blossom,120,110,24),
-                          (_blossom,332,322,24),(_rose,108,108,38)]:
-        els.append(f'<g filter="url(#blur0)">{fn(x,y,r)}</g>')
+    els.append(f'<g filter="url(#blur1)">{_peony(c-40, c-30, 92)}</g>')
+    els.append(f'<g filter="url(#blur1)">{_peony(c+56, c+52, 78)}</g>')
+    els.append(f'<g filter="url(#blur1)">{_rose(c-58, c+64, 70)}</g>')
+    for (fn, dx, dy, r) in [(_rose,64,-70,58),(_rose,-6,4,52),(_rose,96,-4,46),
+                            (_rose,-96,-8,44),(_rose,30,96,44),(_rose,-24,-104,40),
+                            (_blossom,116,-92,28),(_blossom,-118,72,28),(_blossom,108,84,26),
+                            (_blossom,-92,-84,24),(_blossom,16,-40,22),(_blossom,-44,52,22),
+                            (_blossom,64,40,20),(_blossom,-70,-24,20)]:
+        els.append(f'<g filter="url(#blur0)">{fn(c+dx, c+dy, r)}</g>')
 
-    body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">
+    body = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
 <defs>
   <radialGradient id="pet" cx="34%" cy="26%" r="82%">
     <stop offset="0" stop-color="#FFFEF9"/><stop offset=".3" stop-color="#F8EEDA"/>
@@ -285,7 +289,7 @@ def floral():
 def lantern():
     W, H = 150, 360
     cx = W/2
-    body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">
+    body = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
 <defs>
   <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="#7C5A22"/><stop offset=".28" stop-color="#D9A94C"/>

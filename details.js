@@ -18,7 +18,7 @@ window.INVITE = {
   welcome: "إِنْ شَاءَ اللّٰه",       // "In Sha Allah" in Arabic
   ceremony: "Nikah Ceremony",
   joiner: "of",
-  couple: "Hina &amp; Quadir",      // use &amp; for the ampersand
+  couple: "Hina&nbsp;&amp;<br>Quadir",   // &amp; = ampersand; <br> keeps it two tidy lines
   scrollCue: "Scroll to begin",
 
   /* ── The date (revealed by scratching) ─────────────────────────── */
