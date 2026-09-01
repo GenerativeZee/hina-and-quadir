@@ -33,7 +33,6 @@
       if (txt.length > 8) el.classList.add('card__value--xlong');
       else if (txt.length > 5) el.classList.add('card__value--long');
     });
-    $('.date__weekday').innerHTML = D.date.weekday || '';
 
     var ol = $('#tl');
     (D.timeline || []).forEach(function (t, i) {
@@ -55,12 +54,6 @@
     var mb = $('#mapsBtn');
     if (D.venue && D.venue.mapsUrl) mb.href = D.venue.mapsUrl;
     else mb.hidden = true;
-
-    var hb = $('#haldiMapsBtn');
-    if (hb) {
-      if (D.haldi && D.haldi.mapsUrl) hb.href = D.haldi.mapsUrl;
-      else hb.hidden = true;
-    }
 
     var rl = $('#rsvpList');
     if (rl && D.rsvp && D.rsvp.names) {
@@ -286,7 +279,7 @@
         $('#scratchLabel').classList.add('spent');
         setTimeout(function () {
           $('#dateDone').classList.add('in');
-          $('.date__weekday').classList.add('lit');
+          var hj = $('.date__hijri'); if (hj) hj.classList.add('lit');
         }, 350);
       }
     }
@@ -550,14 +543,13 @@
       '#boot{display:none!important}' +
       '.env{display:none!important}' +
       '.invite{opacity:1!important;transform:none!important;filter:none!important}' +
-      '.hero{height:100svh!important;perspective:none!important}' +
+      '.hero{height:640px!important;perspective:none!important}' +
       '.hero__depth,.hero__plane{transform:none!important;transform-style:flat!important}' +
       '.hero__scene{animation:none!important;transform:none!important;opacity:1!important}' +
       '.hero__archimg,.hero__lantern,.hero__flora,.hero__bloom,.hero__haze{opacity:1!important;transform:none!important}' +
       '.hero__flora--tr{transform:scaleX(-1)!important}.hero__flora--bl{transform:scaleY(-1)!important}.hero__flora--br{transform:scale(-1)!important}' +
       '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
-      '.date__done,.date__done .date__laurel{opacity:1!important;transform:translate(-50%,-52%) scale(1)!important}' +
-      '.date__done{transform:none!important}' +
+      '.date__done{opacity:1!important;transform:none!important}' +
       '.tl__rail{transform:translateX(-.5px) scaleY(1)!important}' +
       '.tl__node{transform:rotate(45deg) scale(1)!important}';
     document.head.appendChild(st);

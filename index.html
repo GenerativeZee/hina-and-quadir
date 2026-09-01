@@ -37,9 +37,9 @@
           <img class="env__card-spray env__card-spray--tl" src="assets/corner-spray.svg" alt="">
           <img class="env__card-spray env__card-spray--br" src="assets/corner-spray-flip.svg" alt="">
           <div class="env__card-face">
+            <img class="env__card-bismillah" src="assets/bismillah.png" alt="Bismillah ir-Rahman ir-Rahim">
             <span class="env__card-rule"></span>
             <span class="env__card-mono gold-text" data-fill="monogram"></span>
-            <span class="env__card-teaser" data-fill="cardTeaser"></span>
             <img class="env__card-orn" src="assets/divider.svg" alt="">
           </div>
           <div class="env__card-sheen"></div>
@@ -175,11 +175,10 @@
         </div>
       </div>
 
-      <p class="date__done" id="dateDone">
-        <img class="date__laurel" src="assets/laurel-badge.svg" alt="">
-        <span class="date__weekday gold-text"></span>
+      <div class="date__done" id="dateDone">
         <span class="date__note" data-fill="date.revealedNote"></span>
-      </p>
+        <span class="date__hijri gold-text" data-fill="date.hijri"></span>
+      </div>
       <button class="linkbtn" id="revealAll" type="button" hidden>Reveal all</button>
 
       <img class="divider reveal" src="assets/divider.svg" alt="">
@@ -206,9 +205,10 @@
         <p class="person__par"  data-fill="bride.parents"></p>
       </div>
 
-      <div class="letter reveal" data-stagger>
-        <h2 class="script-h script-h--sm gold-text" data-fill="letterTitle"></h2>
-        <p class="letter__body" data-fill="letterBody"></p>
+      <div class="ayah reveal" data-stagger>
+        <p class="ayah__arabic" dir="rtl" lang="ar" data-fill="ayah.arabic"></p>
+        <p class="ayah__translation" data-fill="ayah.translation"></p>
+        <p class="ayah__ref" data-fill="ayah.reference"></p>
       </div>
 
       <img class="divider reveal" src="assets/divider.svg" alt="">
@@ -236,28 +236,6 @@
         <a class="btn" id="mapsBtn" target="_blank" rel="noopener">
           <span data-fill="venue.mapsLabel"></span>
         </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ── haldi ── -->
-  <section class="sec sec--haldi" id="haldiSec">
-    <img class="closing__corner closing__corner--l" src="assets/corner-spray.svg" alt="">
-    <img class="closing__corner closing__corner--r" src="assets/corner-spray-flip.svg" alt="">
-    <div class="sec__inner">
-      <h2 class="script-h gold-text reveal" data-fill="haldi.title"></h2>
-      <div class="haldi reveal" data-stagger>
-        <p class="haldi__intro" data-fill="haldi.intro"></p>
-        <p class="haldi__name gold-text" data-fill="haldi.name"></p>
-        <img class="divider" src="assets/divider.svg" alt="">
-        <p class="haldi__when" data-fill="haldi.datetime"></p>
-        <p class="venue__name" data-fill="haldi.venueName"></p>
-        <p class="venue__addr" data-fill="haldi.venueAddr"></p>
-        <a class="btn" id="haldiMapsBtn" target="_blank" rel="noopener">
-          <span data-fill="haldi.mapsLabel"></span>
-        </a>
-        <p class="haldi__note" data-fill="haldi.note"></p>
       </div>
     </div>
   </section>

@@ -25,104 +25,35 @@ def w(path, s):
 
 
 # ══════════════════════════════════════════════════════════════════
-# 1. the vista seen through the arch — sky, sun, mosque, reflection
+# 1. the vista seen through the arch — a soft ivory wash of light
 # ══════════════════════════════════════════════════════════════════
 def vista():
     W, H = 1000, 1560
-    horizon = H * 0.72
-    cx = W / 2
-    M = 0.72                                   # overall mosque scale
-
-    DBASE, DLIT, DSHAD, DTIP = "#ECDFC4", "#FEFAF0", "#DCCAA6", "#F3EAD6"
-
-    def dome(dcx, base, rw, rh):
-        # a soft onion dome: pale ivory, a gentle lit crescent, a soft shadow
-        top = base - rh * 1.62
-        return (
-            f'<path d="M{dcx-rw},{base} C{dcx-rw},{base-rh*1.12} {dcx-rw*0.55},{base-rh*1.55} {dcx},{top} '
-            f'C{dcx+rw*0.55},{base-rh*1.55} {dcx+rw},{base-rh*1.12} {dcx+rw},{base} Z" fill="{DBASE}"/>'
-            f'<path d="M{dcx},{top} C{dcx+rw*0.52},{base-rh*1.5} {dcx+rw},{base-rh*1.05} {dcx+rw},{base} '
-            f'C{dcx+rw*0.5},{base} {dcx+rw*0.2},{base-rh*0.7} {dcx+rw*0.1},{top+rh*0.2} Z" fill="{DLIT}" opacity=".85"/>'
-            f'<path d="M{dcx-rw},{base} C{dcx-rw},{base-rh*1.12} {dcx-rw*0.62},{base-rh*1.5} {dcx-rw*0.2},{top+rh*0.15} '
-            f'C{dcx-rw*0.4},{base-rh*0.7} {dcx-rw*0.7},{base-rh*0.3} {dcx-rw*0.55},{base} Z" fill="{DSHAD}" opacity=".8"/>'
-            f'<path d="M{dcx},{top} C{dcx-rw*0.15},{top-rh*0.18} {dcx-rw*0.09},{top-rh*0.34} {dcx},{top-rh*0.46} '
-            f'C{dcx+rw*0.09},{top-rh*0.34} {dcx+rw*0.15},{top-rh*0.18} {dcx},{top} Z" fill="{DTIP}"/>'
-            f'<rect x="{dcx-2.2}" y="{top-rh*0.46-rh*0.18}" width="4.4" height="{rh*0.2}" fill="{GOLD}"/>'
-            f'<circle cx="{dcx}" cy="{top-rh*0.46-rh*0.2}" r="3.6" fill="{GOLD_L}"/>'
-        )
-
-    def minaret(mcx, base, top, wd):
-        return (
-            f'<rect x="{mcx-wd/2}" y="{top}" width="{wd}" height="{base-top}" fill="url(#minG)"/>'
-            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.30}" width="{wd*1.6}" height="{wd*0.55}" fill="{DBASE}"/>'
-            f'<rect x="{mcx-wd*0.8}" y="{top+(base-top)*0.58}" width="{wd*1.6}" height="{wd*0.55}" fill="{DBASE}"/>'
-            + dome(mcx, top, wd*1.0, wd*1.15)
-            + f'<rect x="{mcx-wd*0.95}" y="{top-3}" width="{wd*1.9}" height="{wd*0.5}" rx="2" fill="{DLIT}"/>'
-        )
-
-    def y(v):  return horizon - v * M          # height above horizon, scaled
-    def s(v):  return v * M                     # scaled length
-
-    mos = ''
-    mos += minaret(cx-s(360), horizon, y(620), s(30))
-    mos += minaret(cx+s(360), horizon, y(620), s(30))
-    mos += minaret(cx-s(250), horizon, y(520), s(24))
-    mos += minaret(cx+s(250), horizon, y(520), s(24))
-    mos += f'<rect x="{cx-s(235)}" y="{y(210)}" width="{s(470)}" height="{s(210)}" fill="{DBASE}"/>'
-    mos += f'<path d="M{cx-s(248)},{y(210)} H{cx+s(248)} L{cx+s(218)},{y(262)} H{cx-s(218)} Z" fill="{DTIP}"/>'
-    for i in range(-4, 5):
-        ax = cx + i*s(54)
-        mos += (f'<path d="M{ax-s(20)},{horizon} V{y(96)} A{s(20)},{s(26)} 0 0 1 {ax+s(20)},{y(96)} V{horizon} Z" '
-                f'fill="{DSHAD}" opacity=".45"/>')
-    mos += dome(cx-s(192), y(210), s(86), s(74))
-    mos += dome(cx+s(192), y(210), s(86), s(74))
-    mos += dome(cx, y(244), s(168), s(150))
-
+    cx, glowY = W / 2, H * 0.6
     body = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#E6DABE"/><stop offset=".26" stop-color="#F0E6CF"/>
-    <stop offset=".5" stop-color="#F6EEDC"/><stop offset=".66" stop-color="#FAF3E5"/>
-    <stop offset=".72" stop-color="#FDF9F0"/>
+    <stop offset="0" stop-color="#E7DBC0"/><stop offset=".3" stop-color="#F1E7D1"/>
+    <stop offset=".56" stop-color="#F7F0DF"/><stop offset=".78" stop-color="#FBF5E9"/>
+    <stop offset="1" stop-color="#FBF4EA"/>
   </linearGradient>
-  <radialGradient id="sun" cx="50%" cy="{(horizon-24)/H*100:.0f}%" r="30%">
-    <stop offset="0" stop-color="#FFFEF9"/><stop offset=".2" stop-color="rgba(255,251,238,.55)"/>
-    <stop offset=".55" stop-color="rgba(255,247,228,.12)"/><stop offset="1" stop-color="rgba(255,247,228,0)"/>
+  <radialGradient id="glow" cx="50%" cy="{glowY/H*100:.0f}%" r="52%">
+    <stop offset="0" stop-color="#FFFDF6"/><stop offset=".22" stop-color="rgba(255,251,238,.5)"/>
+    <stop offset=".55" stop-color="rgba(255,247,228,.14)"/><stop offset="1" stop-color="rgba(255,247,228,0)"/>
   </radialGradient>
-  <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#F5EDDB"/><stop offset=".5" stop-color="#EFE4CE"/>
-    <stop offset="1" stop-color="#EBDFC7"/>
-  </linearGradient>
-  <linearGradient id="minG" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="{DSHAD}"/><stop offset=".45" stop-color="{DLIT}"/>
-    <stop offset="1" stop-color="{DBASE}"/>
-  </linearGradient>
-  <filter id="soft"><feGaussianBlur stdDeviation="1.3"/></filter>
-  <filter id="softer"><feGaussianBlur stdDeviation="8"/></filter>
+  <filter id="softer"><feGaussianBlur stdDeviation="9"/></filter>
 </defs>
-
 <rect width="{W}" height="{H}" fill="url(#sky)"/>
-<g filter="url(#softer)" opacity=".55">
-  <ellipse cx="{W*0.28}" cy="{horizon-190}" rx="240" ry="22" fill="#FFFBF0"/>
-  <ellipse cx="{W*0.74}" cy="{horizon-120}" rx="280" ry="24" fill="#FEF8EC"/>
-  <ellipse cx="{W*0.52}" cy="{horizon-300}" rx="320" ry="24" fill="#FFFCF4"/>
+<g filter="url(#softer)" opacity=".5">
+  <ellipse cx="{W*0.30}" cy="{H*0.34}" rx="260" ry="24" fill="#FFFDF4"/>
+  <ellipse cx="{W*0.72}" cy="{H*0.46}" rx="300" ry="26" fill="#FEF9EE"/>
+  <ellipse cx="{W*0.50}" cy="{H*0.24}" rx="340" ry="24" fill="#FFFEF8"/>
 </g>
-<rect width="{W}" height="{H}" fill="url(#sun)"/>
-
-<rect x="0" y="{horizon}" width="{W}" height="{H-horizon}" fill="url(#pool)"/>
-<g transform="translate(0,{2*horizon}) scale(1,-1)" filter="url(#softer)" opacity=".32">{mos}</g>
-<g filter="url(#soft)">{mos}</g>
-<g stroke="#FFFBF0" stroke-width="2.5" opacity=".45">
-  <line x1="0" y1="{horizon+52}" x2="{W}" y2="{horizon+52}"/>
-  <line x1="0" y1="{horizon+128}" x2="{W}" y2="{horizon+128}"/>
-  <line x1="0" y1="{horizon+224}" x2="{W}" y2="{horizon+224}"/>
-  <line x1="0" y1="{horizon+340}" x2="{W}" y2="{horizon+340}"/>
-</g>
-<rect x="0" y="{horizon-16}" width="{W}" height="72" fill="url(#sun)" opacity=".35"/>
+<rect width="{W}" height="{H}" fill="url(#glow)"/>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="rgba(251,244,234,0)"/><stop offset="1" stop-color="rgba(251,244,234,.92)"/>
+  <stop offset="0" stop-color="rgba(251,244,234,0)"/><stop offset="1" stop-color="rgba(251,244,234,.95)"/>
 </linearGradient>
-<rect x="0" y="{H*0.74}" width="{W}" height="{H*0.26}" fill="url(#fade)"/>
+<rect x="0" y="{H*0.66}" width="{W}" height="{H*0.34}" fill="url(#fade)"/>
 </svg>'''
     w("assets/hero-vista.svg", body)
 

@@ -12,10 +12,10 @@ window.INVITE = {
   /* ── The sealed envelope ───────────────────────────────────────── */
   monogram: "H&Q",                 // the initials pressed into the wax seal
   openHint: "Tap the seal to open",
-  cardTeaser: "In the name of Allah",
+  // the Bismillah calligraphy on the card is an image — see assets/bismillah.png
 
   /* ── Hero ──────────────────────────────────────────────────────── */
-  welcome: "In Sha Allah",
+  welcome: "إِنْ شَاءَ اللّٰه",       // "In Sha Allah" in Arabic
   ceremony: "Nikah Ceremony",
   joiner: "of",
   couple: "Hina &amp; Quadir",      // use &amp; for the ampersand
@@ -26,7 +26,7 @@ window.INVITE = {
     day: "14",
     month: "November",
     year: "2026",
-    weekday: "Saturday",
+    hijri: "4 Jumada al-Thani &middot; 1448 AH",
     scratchLabel: "Scratch to reveal the date",
     revealedNote: "Do save the date"
   },
@@ -43,19 +43,22 @@ window.INVITE = {
     parents: "Mrs Nasreen Rafiq &middot; Wife of Late Mohd. Rafiq"
   },
 
-  /* ── The note to guests ────────────────────────────────────────── */
-  letterTitle: "Bismillah ir-Rahman ir-Rahim",
-  letterBody:
-    "Mrs. Nasreen Rafiq requests the honour of your presence on the " +
-    "auspicious occasion of the Nikah ceremony of her beloved daughter " +
-    "Hina, as two families are joined as one by the grace of Allah.",
+  /* ── A verse of the Qur'an, in place of the note to guests ─────── */
+  ayah: {
+    arabic:
+      "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ<br>" +
+      "أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا",
+    translation:
+      "&ldquo;And of His signs is that He created for you from " +
+      "yourselves mates that you may find tranquility in them.&rdquo;",
+    reference: "Al-Qur&rsquo;an &bull; Surah Ar-Rum 30:21"
+  },
 
   /* ── Order of the celebrations ─────────────────────────────────── */
   timelineTitle: "The Celebrations",
   timeline: [
-    { time: "12 Nov", title: "Haldi Ceremony", note: "Thursday, 7:00 PM · Zayan Garden, Aligarh" },
-    { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday, 7:00 PM onwards · Habib Garden" },
-    { time: "Thereafter", title: "Dinner",     note: "Served following the Nikah, In Sha Allah" }
+    { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday &middot; 7:00 PM onwards" },
+    { time: "Thereafter", title: "Dinner",     note: "Served following the Nikah" }
   ],
 
   /* ── Where (the Nikah) ─────────────────────────────────────────── */
@@ -65,19 +68,6 @@ window.INVITE = {
     address: "Marris Road, Aligarh, Uttar Pradesh",
     mapsUrl: "https://maps.google.com/?q=Habib+Garden+Marris+Road+Aligarh",
     mapsLabel: "Open in Maps"
-  },
-
-  /* ── The Haldi ceremony ────────────────────────────────────────── */
-  haldi: {
-    title: "Haldi Ceremony",
-    intro: "We cordially invite you to the Haldi ceremony of",
-    name: "Hina Rafiq",
-    datetime: "Thursday, 12th November 2026 &middot; 7:00 PM onwards",
-    venueName: "Zayan Garden",
-    venueAddr: "Manzoor Gandhi Road, Aligarh",
-    mapsUrl: "https://maps.google.com/?q=Zayan+Garden+Manzoor+Gandhi+Road+Aligarh",
-    mapsLabel: "Open in Maps",
-    note: "Your presence will make this occasion even more special"
   },
 
   /* ── R.S.V.P. ──────────────────────────────────────────────────── */
