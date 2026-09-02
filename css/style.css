@@ -1604,7 +1604,8 @@ body::after {
   }
 }
 
-/* "Do save the date" — sits directly above the three scratch cards */
+/* "Do save the date" — sits directly above the three scratch cards,
+   but only appears once all three have been scratched clean */
 .sec--date #scratchLabel {
   margin-bottom: 12px;
 }
@@ -1616,6 +1617,16 @@ body::after {
   text-transform: uppercase;
   text-align: center;
   color: var(--gold);
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity .6s ease, max-height .6s ease, margin .6s ease;
+}
+
+.date__save.is-shown {
+  max-height: 2.4em;
+  opacity: 1;
   margin: 0 0 20px;
 }
 

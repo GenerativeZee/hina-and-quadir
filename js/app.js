@@ -285,6 +285,7 @@
         setTimeout(function () {
           $('#dateDone').classList.add('in');
           var hj = $('.date__hijri'); if (hj) hj.classList.add('lit');
+          var ds = $('#dateSave'); if (ds) ds.classList.add('is-shown');
         }, 350);
       }
     }
@@ -541,6 +542,7 @@
       '.hero__flora--tr{transform:scaleX(-1)!important}.hero__flora--bl{transform:scaleY(-1)!important}.hero__flora--br{transform:scale(-1)!important}' +
       '.reveal,.hl{opacity:1!important;transform:none!important;filter:none!important}' +
       '.date__done{opacity:1!important;transform:none!important}' +
+      '.date__save{max-height:2.4em!important;opacity:1!important;margin:0 0 20px!important}' +
       '.tl__rail{transform:translateX(-.5px) scaleY(1)!important}' +
       '.tl__node{transform:rotate(45deg) scale(1)!important}';
     document.head.appendChild(st);
