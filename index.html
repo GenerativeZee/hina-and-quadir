@@ -139,6 +139,8 @@
           <span class="spark">&#10022;</span>
         </p>
 
+        <p class="date__save reveal" data-fill="date.revealedNote"></p>
+
         <div class="cards" id="cards" data-stagger>
           <div class="card reveal reveal--scale" data-key="day">
             <div class="card__face"><span class="card__value gold-text"></span></div>
@@ -158,7 +160,6 @@
         </div>
 
         <div class="date__done" id="dateDone">
-          <span class="date__note" data-fill="date.revealedNote"></span>
           <span class="date__hijri gold-text" data-fill="date.hijri"></span>
         </div>
         <button class="linkbtn" id="revealAll" type="button" hidden>Reveal all</button>
@@ -254,6 +255,43 @@
         <img class="flourish reveal" src="assets/damask.svg" alt="">
         <p class="closing__sign gold-text reveal" data-fill="closing.signoff"></p>
         <p class="closing__date reveal" id="closingDate"></p>
+      </div>
+    </section>
+
+
+    <!-- ── with warm regards · compliments & contact ── -->
+    <section class="sec sec--regards" id="regardsSec">
+      <img class="regards__corner regards__corner--l" src="assets/corner-spray.svg" alt="">
+      <img class="regards__corner regards__corner--r" src="assets/corner-spray-flip.svg" alt="">
+      <div class="sec__inner" data-stagger>
+        <p class="eyebrow reveal">
+          <span class="spark">&#10022;</span>
+          <span data-fill="regards.eyebrow"></span>
+          <span class="spark">&#10022;</span>
+        </p>
+        <h2 class="script-h script-h--sm gold-text reveal" data-fill="regards.title"></h2>
+
+        <div class="regards__frame reveal reveal--scale">
+          <p class="regards__from" data-fill="regards.fromLabel"></p>
+          <p class="regards__name gold-text" data-fill="regards.guardian"></p>
+
+          <img class="regards__orn" src="assets/divider.svg" alt="">
+
+          <a class="regards__pill" id="regardsCall">
+            <svg class="regards__pill-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M15.5 14.4l-2.3 2.3a13.5 13.5 0 0 1-6-6l2.3-2.3a1 1 0 0 0 .24-1L8.6 5.3a1 1 0 0 0-.95-.68H4.9a1 1 0 0 0-1 1A15.3 15.3 0 0 0 19.4 21a1 1 0 0 0 1-1v-2.7a1 1 0 0 0-.68-.95l-3.1-1.05a1 1 0 0 0-1 .24z" />
+            </svg>
+            <span data-fill="regards.phone"></span>
+          </a>
+        </div>
+
+        <p class="regards__reach reveal" data-fill="regards.reachLabel"></p>
+        <p class="regards__rsvp gold-text reveal" data-fill="regards.rsvpName"></p>
+        <p class="regards__rsvp-sub reveal" data-fill="regards.rsvpSub"></p>
+
+        <img class="divider reveal" src="assets/divider.svg" alt="">
       </div>
     </section>
 

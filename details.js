@@ -58,7 +58,7 @@ window.INVITE = {
   timelineTitle: "The Celebrations",
   timeline: [
     { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday &middot; 7:00 PM onwards" },
-    { time: "Thereafter", title: "Dinner",     note: "Served following the Nikah" }
+    { time: "Thereafter", title: "Dinner", note: "Served following the Nikah" }
   ],
 
   /* ── Where (the Nikah) ─────────────────────────────────────────── */
@@ -87,6 +87,18 @@ window.INVITE = {
     line1: "Your presence will make this",
     line2: "occasion even more special",
     signoff: "Hina &amp; Quadir"
+  },
+
+  /* ── With warm regards — compliments & contact ─────────────────── */
+  regards: {
+    eyebrow: "With Warm Regards",
+    title: "Compliments &amp;<br>Contact",
+    fromLabel: "With Best Compliments From",
+    guardian: "Mrs. Nasreen Rafiq, W/o Late Mohd. Rafiq",
+    phone: "9760252105",
+    reachLabel: "For R.S.V.P. &amp; enquiries, please reach out to",
+    rsvpName: "Mohd Amir Rafiq",
+    rsvpSub: "&amp; all brothers and relatives"
   },
 
   /* ── Music ─────────────────────────────────────────────────────── */

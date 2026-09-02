@@ -55,6 +55,11 @@
     if (D.venue && D.venue.mapsUrl) mb.href = D.venue.mapsUrl;
     else mb.hidden = true;
 
+    var cb = $('#regardsCall');
+    if (cb && D.regards && D.regards.phone) {
+      cb.href = 'tel:' + String(D.regards.phone).replace(/[^\d+]/g, '');
+    }
+
     var rl = $('#rsvpList');
     if (rl && D.rsvp && D.rsvp.names) {
       D.rsvp.names.forEach(function (nm, i) {

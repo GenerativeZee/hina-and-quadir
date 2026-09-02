@@ -1107,7 +1107,11 @@ body::after {
 .sec {
   position: relative;
   padding: 70px 0;
-  overflow: hidden
+  /* contain the decorative corner sprays, but let script swashes and
+     soft drop-shadows bleed a little instead of being sheared off */
+  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 16px;
 }
 
 .sec__inner {
@@ -1162,10 +1166,14 @@ body::after {
   font-family: var(--script);
   font-size: clamp(38px, 10.5vw, 50px);
   font-weight: 400;
-  line-height: 1.05;
+  /* Great Vibes carries tall ascenders and long swash tails — give the
+     line box room so background-clip:text doesn't shear the glyph edges */
+  line-height: 1.16;
+  padding: .06em .12em .1em;
   margin: 0 0 12px;
   text-align: center;
   position: relative;
+  overflow: visible;
   filter: drop-shadow(0 3px 14px rgba(120, 84, 36, .3));
 }
 
@@ -1507,7 +1515,8 @@ body::after {
   font-family: var(--script);
   font-weight: 400;
   font-size: clamp(31px, 8.6vw, 42px);
-  line-height: 1.08;
+  line-height: 1.18;
+  padding: .04em .12em .08em;
   margin: 2px 0 6px;
   filter: drop-shadow(0 2px 14px rgba(148, 99, 35, .28));
 }
@@ -1550,7 +1559,8 @@ body::after {
 .hero__couple {
   font-family: var(--script);
   font-size: clamp(38px, 14vw, 68px);
-  line-height: 1.08;
+  line-height: 1.2;
+  padding: .04em .14em .1em;
   margin: 8px 0 0;
   filter: drop-shadow(0 3px 20px rgba(148, 99, 35, .32));
 }
@@ -1592,6 +1602,21 @@ body::after {
     transform: translateY(7px);
     opacity: 1
   }
+}
+
+/* "Do save the date" — sits directly above the three scratch cards */
+.sec--date #scratchLabel {
+  margin-bottom: 12px;
+}
+
+.date__save {
+  font-family: var(--caps);
+  font-size: 11px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold);
+  margin: 0 0 20px;
 }
 
 /* ── scratch cards ── */
@@ -1741,7 +1766,8 @@ body::after {
   font-family: var(--script);
   font-weight: 400;
   font-size: clamp(40px, 11.5vw, 52px);
-  line-height: 1.05;
+  line-height: 1.18;
+  padding: .04em .14em .1em;
   margin: 0;
   filter: drop-shadow(0 2px 18px rgba(180, 136, 74, .28));
 }
@@ -1904,7 +1930,8 @@ body::after {
 .tl__time {
   font-family: var(--script);
   font-size: clamp(21px, 6.4vw, 26px);
-  line-height: 1;
+  line-height: 1.2;
+  padding: .04em .1em .06em;
   margin: 0;
   filter: drop-shadow(0 1px 10px rgba(196, 155, 92, .28));
 }
@@ -2080,7 +2107,7 @@ body::after {
 .closing__wreath {
   position: relative;
   display: block;
-  width: 170px;
+  width: 224px;
   margin: 0 auto 22px;
 }
 
@@ -2090,15 +2117,16 @@ body::after {
   filter: var(--relief)
 }
 
+/* the monogram sits inside the ring, clear of the laurel chain */
 .closing__wreath-mono {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   font-family: var(--script);
-  font-size: 42px;
+  font-size: 40px;
   line-height: 1;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   text-shadow: 0 1px 0 rgba(255, 248, 228, .6), 0 3px 8px rgba(46, 30, 12, .32);
 }
 
@@ -2114,7 +2142,8 @@ body::after {
   font-family: var(--script);
   font-size: clamp(38px, 11vw, 48px);
   margin: 22px 0 0;
-  line-height: 1.1;
+  line-height: 1.2;
+  padding: .04em .14em .1em;
   filter: drop-shadow(0 3px 22px rgba(180, 136, 74, .32));
 }
 
@@ -2125,6 +2154,146 @@ body::after {
   text-transform: uppercase;
   color: var(--ink-faint);
   margin: 14px 0 0;
+}
+
+/* ── with warm regards · compliments & contact ── */
+.sec--regards {
+  background: linear-gradient(180deg, #EFDDC9, #E7D3BC);
+  text-align: center;
+  padding: 88px 0 108px;
+}
+
+.regards__corner {
+  position: absolute;
+  width: 58%;
+  opacity: .5;
+  mix-blend-mode: multiply;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.regards__corner--l {
+  left: -13%;
+  top: -5%;
+}
+
+.regards__corner--r {
+  right: -13%;
+  bottom: -5%;
+  transform: scaleY(-1);
+}
+
+.regards__frame {
+  position: relative;
+  max-width: 344px;
+  margin: 26px auto 0;
+  padding: 32px 26px 30px;
+  border: 1px solid rgba(110, 76, 30, .4);
+  background: rgba(255, 252, 246, .5);
+}
+
+/* gold L-brackets at two opposite corners, as on the reference */
+.regards__frame::before,
+.regards__frame::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--gold);
+}
+
+.regards__frame::before {
+  top: -8px;
+  left: -8px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.regards__frame::after {
+  right: -8px;
+  bottom: -8px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.regards__from {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  margin: 0 0 9px;
+}
+
+.regards__name {
+  font-family: var(--caps);
+  font-size: 16px;
+  letter-spacing: .07em;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.regards__orn {
+  display: block;
+  width: 116px;
+  margin: 18px auto;
+  opacity: .8;
+  filter: var(--relief);
+}
+
+.regards__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+  padding: 12px 26px;
+  border: 1px solid rgba(87, 57, 20, .6);
+  border-radius: 2px;
+  background: rgba(255, 252, 246, .6);
+  font-family: var(--caps);
+  font-size: 17px;
+  letter-spacing: .1em;
+  color: var(--gold);
+  text-decoration: none;
+  transition: background .35s, color .35s, border-color .35s, box-shadow .35s;
+}
+
+.regards__pill:hover {
+  background: var(--gold);
+  color: #FFF9EC;
+  border-color: var(--gold);
+  box-shadow: 0 8px 26px -12px rgba(150, 108, 52, .8);
+}
+
+.regards__pill-ic {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+
+.regards__reach {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 30px auto 9px;
+  max-width: 30ch;
+}
+
+.regards__rsvp {
+  font-family: var(--caps);
+  font-size: 16px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin: 0 0 5px;
+}
+
+.regards__rsvp-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-faint);
+  margin: 0;
 }
 
 /* ═════════════════════════ MUSIC ═════════════════════════ */
