@@ -1089,6 +1089,8 @@ body::after {
       0 40px 120px -50px rgba(74, 46, 24, .5);
     border-left: 1px solid rgba(87, 57, 20, .5);
     border-right: 1px solid rgba(87, 57, 20, .5);
+    /* the stationery card is the hard boundary — no decoration escapes it */
+    overflow: hidden;
   }
 
   /* a fine gilded rule capping the top of the stationery */
@@ -1107,11 +1109,9 @@ body::after {
 .sec {
   position: relative;
   padding: 70px 0;
-  /* contain the decorative corner sprays, but let script swashes and
-     soft drop-shadows bleed a little instead of being sheared off */
+  /* keep every decorative layer inside the stationery card; script
+     swashes get their breathing room from the headings' own padding */
   overflow: hidden;
-  overflow: clip;
-  overflow-clip-margin: 16px;
 }
 
 .sec__inner {
