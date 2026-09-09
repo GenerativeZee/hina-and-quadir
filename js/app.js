@@ -41,7 +41,7 @@
       li.innerHTML =
         '<span class="tl__node"></span>' +
         '<p class="tl__time gold-text">' + t.time + '</p>' +
-        '<p class="tl__title">' + t.title + '</p>' +
+        (t.title ? '<p class="tl__title">' + t.title + '</p>' : '') +
         (t.note ? '<p class="tl__note">' + t.note + '</p>' : '');
       ol.appendChild(li);
     });

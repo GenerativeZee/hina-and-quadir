@@ -1815,6 +1815,14 @@ body::after {
   opacity: .8;
 }
 
+.amp__weds {
+  font-family: var(--script);
+  font-size: clamp(24px, 7vw, 32px);
+  line-height: 1;
+  padding: .04em .1em .08em;
+  filter: drop-shadow(0 1px 12px rgba(196, 155, 92, .28));
+}
+
 
 /* ── Qur'an verse ── */
 

@@ -57,8 +57,8 @@ window.INVITE = {
   /* ── Order of the celebrations ─────────────────────────────────── */
   timelineTitle: "The Celebrations",
   timeline: [
-    { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday &middot; 7:00 PM onwards" },
-    { time: "8:00 PM", title: "Dinner", note: "" }
+    { time: "Nikah Ceremony", title: "", note: "Saturday &middot; 7:00 PM onwards" },
+    { time: "Dinner", title: "8:00 PM", note: "" }
   ],
 
   /* ── Where (the Nikah) ─────────────────────────────────────────── */
