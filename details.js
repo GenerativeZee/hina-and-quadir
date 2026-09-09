@@ -40,7 +40,7 @@ window.INVITE = {
   bride: {
     name: "Hina Rafiq",
     relation: "Daughter of",
-    parents: "Mrs Nasreen Rafiq &middot; Wife of Late Mohd. Rafiq"
+    parents: "Mrs Nasreen Rafiq &middot; Wife of Late Haji Mohd. Rafiq"
   },
 
   /* ── A verse of the Qur'an, in place of the note to guests ─────── */
@@ -58,7 +58,7 @@ window.INVITE = {
   timelineTitle: "The Celebrations",
   timeline: [
     { time: "14 Nov", title: "Nikah Ceremony", note: "Saturday &middot; 7:00 PM onwards" },
-    { time: "Thereafter", title: "Dinner", note: "Served following the Nikah" }
+    { time: "8:00 PM", title: "Dinner", note: "" }
   ],
 
   /* ── Where (the Nikah) ─────────────────────────────────────────── */
@@ -94,7 +94,7 @@ window.INVITE = {
     eyebrow: "With Warm Regards",
     title: "Compliments &amp;<br>Contact",
     fromLabel: "With Best Compliments From",
-    guardian: "Mrs. Nasreen Rafiq, W/o Late Mohd. Rafiq",
+    guardian: "Mrs. Nasreen Rafiq, W/o Late Haji Mohd. Rafiq",
     phone: "9760252105",
     reachLabel: "For R.S.V.P. &amp; enquiries, please reach out to",
     rsvpName: "Mohd Amir Rafiq",
